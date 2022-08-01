@@ -1,0 +1,35 @@
+@import '../styles/variables.scss';
+
+#game-header {
+  width: 550px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  margin-top: 40px;
+  padding: 25px 30px;
+  border: 1px solid grey;
+  border-radius: 20px;
+
+  .score {
+    width: 120px;
+    display: flex;
+    padding-block: 10px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px;
+    background-color: #f7f7fa;
+    color: $score_text;
+
+    .text {
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+
+    .number {
+      font-size: 54px;
+      font-weight: bold;
+      color: $dark_text;
+    }
+  }
+}

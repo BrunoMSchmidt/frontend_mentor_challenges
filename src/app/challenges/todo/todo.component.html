@@ -1,0 +1,113 @@
+<div class="background" [class]="darkTheme ? 'dark' : 'light'">
+  <div class="background-image"></div>
+</div>
+<div id="page" [class]="darkTheme ? 'dark' : 'light'">
+  <header>
+    <h1>TODO</h1>
+    <img
+      [src]="
+        darkTheme
+          ? '/assets/challenges/todo-app/images/icon-sun.svg'
+          : '/assets/challenges/todo-app/images/icon-moon.svg'
+      "
+      (click)="switchTheme()"
+    />
+  </header>
+
+  <main>
+    <form
+      class="item-container form"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="check"></div>
+      <input
+        type="text"
+        formControlName="todo"
+        placeholder="Create a new todo..."
+      />
+      <img
+        src="/assets/challenges/todo-app/images/icon-check.svg"
+        *ngIf="fc.todo.valid"
+        (click)="onSubmit()"
+      />
+    </form>
+
+    <div class="todo-list" *ngIf="filteredTodos.length > 0; else noTodos">
+      <div
+        class="item-container todo"
+        [ngClass]="{ completed: todo.state == 'completed' }"
+        *ngFor="let todo of filteredTodos"
+        (click)="changeTodoState(todo)"
+      >
+        <div class="check">
+          <div class="check-icon"></div>
+        </div>
+        <p>{{ todo.description }}</p>
+        <div class="delete" (click)="removeTodo(todo.id)"></div>
+      </div>
+
+      <footer class="item-container todo">
+        <p>
+          {{
+            itemsLeft > 0
+              ? itemsLeft + " item" + (itemsLeft > 1 ? "s" : "")
+              : "No items"
+          }} left
+        </p>
+        <p (click)="clearCompleted()">Clear Completed</p>
+      </footer>
+    </div>
+
+    <ng-template #noTodos>
+      <div class="todo-list">
+        <div class="item-container todo" style="border-radius: 5px">
+          <p>The list is empty...</p>
+        </div>
+      </div>
+    </ng-template>
+
+    <div class="item-container menu">
+      <p>
+        {{
+          itemsLeft > 0
+            ? itemsLeft + " item" + (itemsLeft > 1 ? "s" : "")
+            : "No items"
+        }} left
+      </p>
+      <div class="menu-wrapper">
+        <div
+          class="link"
+          [class.active]="filter === 'all'"
+          (click)="filter = 'all'"
+        >
+          All
+        </div>
+        <div
+          class="link"
+          [class.active]="filter === 'active'"
+          (click)="filter = 'active'"
+        >
+          Active
+        </div>
+        <div
+          class="link"
+          [class.active]="filter === 'completed'"
+          (click)="filter = 'completed'"
+        >
+          Completed
+        </div>
+      </div>
+      <p (click)="clearCompleted()">Clear Completed</p>
+    </div>
+  </main>
+
+  <!-- Clear Completed All Active Completed Drag and drop to reorder -->
+
+  <!-- <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div> -->
+</div>

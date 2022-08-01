@@ -1,0 +1,17 @@
+<div id="game-container">
+
+  <app-game-header [score]="score">
+
+  </app-game-header>
+
+  <app-game-escolhas *ngIf="telaAtual === 'escolha'"
+    (escolha)="escolher($event)"></app-game-escolhas>
+  <app-game-jogada *ngIf="telaAtual === 'jogada'"
+    [jogador]="jogador" [computador]="computador" 
+    [resultado]="resultado" (reset)="resetar()"></app-game-jogada>
+  
+  <ng-template #telaDeEscolha>
+
+  </ng-template>
+  
+</div>

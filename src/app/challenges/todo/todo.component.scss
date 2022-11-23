@@ -1,12 +1,12 @@
 .attribution {
-  font-size: 11px;
-  text-align: center;
+    font-size: 11px;
+    text-align: center;
 }
 .attribution a {
-  color: hsl(228, 45%, 44%);
+    color: hsl(228, 45%, 44%);
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
 
 $very-light-gray: hsl(0, 0%, 98%);
 $very-light-grayish-blue: hsl(236, 33%, 92%);
@@ -29,308 +29,306 @@ h3,
 h4,
 h5,
 p {
-  font-family: "Josefin Sans";
-  margin: 0;
+    font-family: 'Josefin Sans';
+    margin: 0;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 .background {
-  position: absolute;
-  height: 100%;
-  inset: 0;
-  z-index: -1;
-
-  .background-image {
     position: absolute;
-    height: 25vh;
-    min-height: 200px;
-    width: 100%;
-    background-position: 50% 25%;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
+    height: 100%;
+    inset: 0;
+    z-index: -1;
+
+    .background-image {
+        position: absolute;
+        height: 25vh;
+        min-height: 200px;
+        width: 100%;
+        background-position: 50% 25%;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
 }
 
 .background.light {
-  background-color: $very-light-grayish-blue;
+    background-color: $very-light-grayish-blue;
 
-  .background-image {
-    background-image: url("/assets/challenges/todo-app/images/bg-mobile-light.jpg");
-  }
+    .background-image {
+        background-image: url('/assets/challenges/todo-app/images/bg-mobile-light.jpg');
+    }
 }
 
 .background.dark {
-  background-color: $very-dark-blue;
+    background-color: $very-dark-blue;
 
-  .background-image {
-    background-image: url("/assets/challenges/todo-app/images/bg-mobile-dark.jpg");
-  }
+    .background-image {
+        background-image: url('/assets/challenges/todo-app/images/bg-mobile-dark.jpg');
+    }
 }
 
 #page {
-  width: min(900px, 90%);
-  margin: auto;
-  font-family: "Josefin Sans", sans-serif;
-  font-size: 16px;
+    width: min(900px, 90%);
+    margin: auto;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16px;
 
-  &.light {
-    $very-light-gray: hsl(0, 0%, 98%);
-    $very-light-grayish-blue: hsl(236, 33%, 92%);
-    $light-grayish-blue: hsl(233, 11%, 84%);
-    $dark-grayish-blue: hsl(236, 9%, 61%);
-    $very-dark-grayish-blue: hsl(235, 19%, 35%);
+    &.light {
+        $very-light-gray: hsl(0, 0%, 98%);
+        $very-light-grayish-blue: hsl(236, 33%, 92%);
+        $light-grayish-blue: hsl(233, 11%, 84%);
+        $dark-grayish-blue: hsl(236, 9%, 61%);
+        $very-dark-grayish-blue: hsl(235, 19%, 35%);
 
-    .item-container {
-      background-color: white;
-      color: $very-dark-grayish-blue;
+        .item-container {
+            background-color: white;
+            color: $very-dark-grayish-blue;
 
-      &.completed {
-        color: $light-grayish-blue;
-      }
+            &.completed {
+                color: $light-grayish-blue;
+            }
 
-      input {
-        color: $dark-grayish-blue;
-      }
-    }
-  }
-
-  &.dark {
-    $very-dark-blue: hsl(235, 21%, 11%);
-    $very-dark-desaturated-blue: hsl(235, 24%, 19%);
-    $light-grayish-blue: hsl(234, 39%, 85%);
-    $light-grayish-blue-hover: hsl(236, 33%, 92%); // hover
-    $dark-grayish-blue: hsl(234, 11%, 52%);
-    $very-dark-grayish-blue: hsl(233, 14%, 35%);
-    $very-dark-grayish-blue: hsl(237, 14%, 26%);
-
-    .item-container {
-      background-color: $very-dark-desaturated-blue;
-      color: $light-grayish-blue;
+            input {
+                color: $dark-grayish-blue;
+            }
+        }
     }
 
-    .item-container.form input {
-      color: $light-grayish-blue;
+    &.dark {
+        $very-dark-blue: hsl(235, 21%, 11%);
+        $very-dark-desaturated-blue: hsl(235, 24%, 19%);
+        $light-grayish-blue: hsl(234, 39%, 85%);
+        $light-grayish-blue-hover: hsl(236, 33%, 92%); // hover
+        $dark-grayish-blue: hsl(234, 11%, 52%);
+        $very-dark-grayish-blue: hsl(233, 14%, 35%);
+        $very-dark-grayish-blue: hsl(237, 14%, 26%);
+
+        .item-container {
+            background-color: $very-dark-desaturated-blue;
+            color: $light-grayish-blue;
+        }
+
+        .item-container.form input {
+            color: $light-grayish-blue;
+        }
     }
-  }
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin: 2em 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 2em 0;
 
-  h1 {
-    font-family: inherit;
-    color: white;
-    font-size: 18px;
-    font-size: clamp(36px, 1.7887em + 1.0141vw, 42px);
-    letter-spacing: 0.3em;
-  }
+    h1 {
+        font-family: inherit;
+        color: white;
+        font-size: 18px;
+        font-size: clamp(36px, 1.7887em + 1.0141vw, 42px);
+        letter-spacing: 0.3em;
+    }
 
-  img {
-    width: clamp(36px, 1.7887em + 1.0141vw, 42px);
-  }
+    img {
+        width: clamp(36px, 1.7887em + 1.0141vw, 42px);
+    }
 }
 
 main {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .item-container {
-  display: flex;
-  width: 100%;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 20px;
-  padding: 0.9em 1.8em;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    padding: 0.9em 1.8em;
 }
 
 form.item-container.form {
-  border-radius: 5px;
+    border-radius: 5px;
 
-  .check {
-    width: clamp(20px, 3vw, 30px);
-    height: clamp(20px, 3vw, 30px);
-    border-radius: 50%;
-    border: 1px solid #c9c9c9;
-  }
+    .check {
+        width: clamp(20px, 3vw, 30px);
+        height: clamp(20px, 3vw, 30px);
+        border-radius: 50%;
+        border: 1px solid #c9c9c9;
+    }
 
-  input {
-    min-width: 0;
-    flex: 1;
-    outline: none;
-    font-size: clamp(1em, 3vw, 1.3em);
-    border: none;
-    background-color: transparent;
-  }
+    input {
+        min-width: 0;
+        flex: 1;
+        outline: none;
+        font-size: clamp(1em, 3vw, 1.3em);
+        border: none;
+        background-color: transparent;
+    }
 
-  > img {
-    cursor: pointer;
-  }
+    > img {
+        cursor: pointer;
+    }
 }
 
 .todo-list {
-  margin-top: 1.5em;
+    margin-top: 1.5em;
 
-  border-radius: 5px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .item-container.todo {
-
-  .check {
-    width: clamp(20px, 3vw, 30px);
-    height: clamp(20px, 3vw, 30px);
-    border-radius: 50%;
-    border: 1px solid #c9c9c9;
-    transition: background 200ms ease-in-out;
-    transition: 200ms ease-out;
-
-    &:hover {
-      border: 1px solid $bright-blue;
-    }
-  }
-
-  p {
-    cursor: pointer;
-    flex: 1;
-    font-size: clamp(1em, 3vw, 1.3em);
-  }
-
-  .delete {
-    width: 20px;
-    height: 20px;
-    background-image: url("/assets/challenges/todo-app/images/icon-cross.svg");
-    background-size: 70%;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
-    transition: 200ms;
-
-    &:hover {
-      transform: translateY(-2px) scale(1.2);
-    }
-  }
-
-  &.completed {
     .check {
-      background-image: $check-background;
-      background-position: center;
-      background-repeat: no-repeat;
-      border-width: 0;
+        width: clamp(20px, 3vw, 30px);
+        height: clamp(20px, 3vw, 30px);
+        border-radius: 50%;
+        border: 1px solid #c9c9c9;
+        transition: background 200ms ease-in-out;
+        transition: 200ms ease-out;
 
-      .check-icon {
-        background-image: url("/assets/challenges/todo-app/images/icon-check.svg");
-        width: 100%;
-        height: 100%;
-        background-size: 70%;
-        background-position: center;
-        background-repeat: no-repeat;
-      }
+        &:hover {
+            border: 1px solid $bright-blue;
+        }
     }
 
     p {
-      text-decoration: line-through;
+        cursor: pointer;
+        flex: 1;
+        font-size: clamp(1em, 3vw, 1.3em);
     }
-  }
+
+    .delete {
+        width: 20px;
+        height: 20px;
+        background-image: url('/assets/challenges/todo-app/images/icon-cross.svg');
+        background-size: 70%;
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+        transition: 200ms;
+
+        &:hover {
+            transform: translateY(-2px) scale(1.2);
+        }
+    }
+
+    &.completed {
+        .check {
+            background-image: $check-background;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-width: 0;
+
+            .check-icon {
+                background-image: url('/assets/challenges/todo-app/images/icon-check.svg');
+                width: 100%;
+                height: 100%;
+                background-size: 70%;
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+        }
+
+        p {
+            text-decoration: line-through;
+        }
+    }
 }
 
 footer.item-container.todo {
-  p:first-child {
-    cursor: initial;
-    text-align: start;
-  }
-  p:last-child {
-    cursor: pointer;
-    text-align: end;
-
-    &:hover {
-      color: $bright-blue;
+    p:first-child {
+        cursor: initial;
+        text-align: start;
     }
-  }
+    p:last-child {
+        cursor: pointer;
+        text-align: end;
+
+        &:hover {
+            color: $bright-blue;
+        }
+    }
 }
 
 .item-container.menu {
-  margin-top: 1.5em;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 5px;
+    margin-top: 1.5em;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
 
-  .menu-wrapper {
-    display: flex;
-    margin: 0 auto;
-    justify-content: center;
-    gap: 1.5em;
+    .menu-wrapper {
+        display: flex;
+        margin: 0 auto;
+        justify-content: center;
+        gap: 1.5em;
 
-    .link {
-      cursor: pointer;
-      font-size: clamp(1em, 3vw, 1.3em);
+        .link {
+            cursor: pointer;
+            font-size: clamp(1em, 3vw, 1.3em);
 
-      &.active {
-        color: $bright-blue;
-      }
+            &.active {
+                color: $bright-blue;
+            }
+        }
     }
-  }
 
-  p {
-    display: none;
-
-    &:first-child {
-      cursor: initial;
-      text-align: start;
-    }
-    &:last-child {
-      cursor: pointer;
-      text-align: end;
-
-      &:hover {
-        color: $bright-blue;
-      }
-    }
-  }
-}
-
-@media (min-width: 768px){
-
-  header {
-    margin: 4em 0;
-  }
-
-  .background {
-    .background-image {
-      min-height: 300px;
-    }
-  }
-
-  .background.light {
-    .background-image {
-      background-image: url("/assets/challenges/todo-app/images/bg-desktop-light.jpg");
-    }
-  }
-
-  .background.dark {
-    .background-image {
-      background-image: url("/assets/challenges/todo-app/images/bg-desktop-dark.jpg");
-    }
-  }
-}
-
-@media (min-width: 900px){
-  footer.item-container.todo {
-    display: none;
-  }
-
-  .item-container.menu {
     p {
-      display: block;
+        display: none;
+
+        &:first-child {
+            cursor: initial;
+            text-align: start;
+        }
+        &:last-child {
+            cursor: pointer;
+            text-align: end;
+
+            &:hover {
+                color: $bright-blue;
+            }
+        }
     }
-  }
+}
+
+@media (min-width: 768px) {
+    header {
+        margin: 4em 0;
+    }
+
+    .background {
+        .background-image {
+            min-height: 300px;
+        }
+    }
+
+    .background.light {
+        .background-image {
+            background-image: url('/assets/challenges/todo-app/images/bg-desktop-light.jpg');
+        }
+    }
+
+    .background.dark {
+        .background-image {
+            background-image: url('/assets/challenges/todo-app/images/bg-desktop-dark.jpg');
+        }
+    }
+}
+
+@media (min-width: 900px) {
+    footer.item-container.todo {
+        display: none;
+    }
+
+    .item-container.menu {
+        p {
+            display: block;
+        }
+    }
 }

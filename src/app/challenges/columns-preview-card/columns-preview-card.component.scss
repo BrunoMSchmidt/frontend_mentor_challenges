@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&family=Lexend+Deca&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700&family=Lexend+Deca&display=swap');
 
 $bright_orange: hsl(31, 77%, 52%);
 $dark_cyan: hsl(184, 100%, 22%);
@@ -8,110 +8,115 @@ $very_light_gray: hsl(0, 0%, 95%);
 
 /* CSS DEFAULT MESSAGE */
 .attribution {
-  font-size: 17px;
-  text-align: center;
+    font-size: 17px;
+    text-align: center;
 }
 .attribution a {
-  color: hsl(228, 45%, 44%);
+    color: hsl(228, 45%, 44%);
 }
 /* */
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-size: 14px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 14px;
 }
 
 body {
-  height: 100%;
-  background-color: $very_light_gray;
+    height: 100%;
+    background-color: $very_light_gray;
 }
 
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: calc(100vh - 20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 20px);
 }
 
 .cards {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 15px;
-  overflow: hidden;
-  margin: 3% 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 3% 3%;
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 25px;
-  max-width: 550px;
-  padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25px;
+    max-width: 550px;
+    padding: 50px;
 
-  h1 {
-    font-family: "Big Shoulders Display", sans-serif;
-    font-weight: 700;
-    color: $very_light_gray;
-    text-transform: uppercase;
-    font-size: 2.4rem;
-  }
-
-  p {
-    flex: 1;
-    font-family: "Lexend Deca", sans-serif;
-    color: $transparent_white;
-    font-size: 1.1rem;
-    line-height: 25px;
-  }
-
-  &.sedan {
-    background-color: $bright_orange;
-
-    button {color: $bright_orange}
-  }
-
-  &.suv {
-    background-color: $dark_cyan;
-
-    button {color: $dark_cyan}
-  }
-
-  &.luxury {
-    background-color: $very_dark_cyan;
-
-    button {color: $very_dark_cyan}
-  }
-
-  button {
-    font-family: "Lexend Deca", sans-serif;
-    margin-top: 10px;
-    background-color: $very_light_gray;
-    border: 2px solid $very_light_gray;
-    border-radius: 30px;
-    padding: 15px 25px;
-    font-size: 1.2rem;
-    transition: 200ms ease-in-out;
-    cursor: pointer;
-
-    &:hover {
-      background-color: transparent;
-      color: $very_light_gray;
+    h1 {
+        font-family: 'Big Shoulders Display', sans-serif;
+        font-weight: 700;
+        color: $very_light_gray;
+        text-transform: uppercase;
+        font-size: 2.4rem;
     }
-  }
+
+    p {
+        flex: 1;
+        font-family: 'Lexend Deca', sans-serif;
+        color: $transparent_white;
+        font-size: 1.1rem;
+        line-height: 25px;
+    }
+
+    &.sedan {
+        background-color: $bright_orange;
+
+        button {
+            color: $bright_orange;
+        }
+    }
+
+    &.suv {
+        background-color: $dark_cyan;
+
+        button {
+            color: $dark_cyan;
+        }
+    }
+
+    &.luxury {
+        background-color: $very_dark_cyan;
+
+        button {
+            color: $very_dark_cyan;
+        }
+    }
+
+    button {
+        font-family: 'Lexend Deca', sans-serif;
+        margin-top: 10px;
+        background-color: $very_light_gray;
+        border: 2px solid $very_light_gray;
+        border-radius: 30px;
+        padding: 15px 25px;
+        font-size: 1.2rem;
+        transition: 200ms ease-in-out;
+        cursor: pointer;
+
+        &:hover {
+            background-color: transparent;
+            color: $very_light_gray;
+        }
+    }
 }
 
-@media screen and (min-width: 900px){
+@media screen and (min-width: 900px) {
+    .cards {
+        flex-direction: row;
+    }
 
-  .cards {
-    flex-direction: row;
-  }
-
-  .card {
-    max-width: 350px;
-    gap: 45px;
-  }
+    .card {
+        max-width: 350px;
+        gap: 45px;
+    }
 }

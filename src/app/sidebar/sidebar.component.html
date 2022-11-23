@@ -1,71 +1,68 @@
-<div
-  class="custom-menu"
-  [@slideFromLeft]="isOpen ? 'visible' : 'hidden'"
->
-  <div class="menu-header">
-    <h1>Challenges</h1>
-    <div class="menu-icon" (click)="toggleSidebar()">
-      <div></div>
-      <div></div>
-      <div></div>
+<div class="custom-menu" [@slideFromLeft]="isOpen ? 'visible' : 'hidden'">
+    <div class="menu-header">
+        <h1>Challenges</h1>
+        <div class="menu-icon" (click)="toggleSidebar()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
     </div>
-  </div>
-  <nav>
-    <a
-      class="item"
-      [routerLink]="['challenges', 'tip-calculator']"
-      [routerLinkActive]="'active'"
-      (click)="toggleSidebar()"
-      >Tip Calculator</a
-    >
-    <a
-      class="item"
-      [routerLink]="['challenges', 'columns-preview-card']"
-      [routerLinkActive]="'active'"
-      (click)="toggleSidebar()"
-      >3 Column Preview Card</a
-    >
-    <a
-      class="item"
-      [routerLink]="['challenges', 'order-summary']"
-      [routerLinkActive]="'active'"
-      (click)="toggleSidebar()"
-      >Order Summary</a
-    >
-    <a
-      class="item"
-      [routerLink]="['challenges', 'time-tracking-dashboard']"
-      [routerLinkActive]="'active'"
-      (click)="toggleSidebar()"
-      >Time Tracking Dashboard</a
-    >
-    <a
-      class="item"
-      [routerLink]="['challenges', 'todo']"
-      [routerLinkActive]="'active'"
-      (click)="toggleSidebar()"
-      >Todo List</a
-    >
-    <a
-      class="item"
-      [routerLink]="['challenges', 'countdown-timer']"
-      [routerLinkActive]="'active'"
-      (click)="toggleSidebar()"
-      >Countdown Timer</a
-    >
-    <a
-      class="item"
-      [routerLink]="['challenges', 'rock-paper-scissors']"
-      [routerLinkActive]="'active'"
-      (click)="toggleSidebar()"
-      >Rock Paper Scissors</a
-    >
-  </nav>
+    <nav>
+        <a
+            class="item"
+            [routerLink]="['challenges', 'tip-calculator']"
+            [routerLinkActive]="'active'"
+            (click)="toggleSidebar()"
+            >Tip Calculator</a
+        >
+        <a
+            class="item"
+            [routerLink]="['challenges', 'columns-preview-card']"
+            [routerLinkActive]="'active'"
+            (click)="toggleSidebar()"
+            >3 Column Preview Card</a
+        >
+        <a
+            class="item"
+            [routerLink]="['challenges', 'order-summary']"
+            [routerLinkActive]="'active'"
+            (click)="toggleSidebar()"
+            >Order Summary</a
+        >
+        <a
+            class="item"
+            [routerLink]="['challenges', 'time-tracking-dashboard']"
+            [routerLinkActive]="'active'"
+            (click)="toggleSidebar()"
+            >Time Tracking Dashboard</a
+        >
+        <a
+            class="item"
+            [routerLink]="['challenges', 'todo']"
+            [routerLinkActive]="'active'"
+            (click)="toggleSidebar()"
+            >Todo List</a
+        >
+        <a
+            class="item"
+            [routerLink]="['challenges', 'countdown-timer']"
+            [routerLinkActive]="'active'"
+            (click)="toggleSidebar()"
+            >Countdown Timer</a
+        >
+        <a
+            class="item"
+            [routerLink]="['challenges', 'rock-paper-scissors']"
+            [routerLinkActive]="'active'"
+            (click)="toggleSidebar()"
+            >Rock Paper Scissors</a
+        >
+    </nav>
 </div>
 
 <div
-  class="sidebar overlay"
-  *ngIf="isOpen"
-  @overlayAppear
-  (click)="toggleSidebar()"
+    class="sidebar overlay"
+    *ngIf="isOpen"
+    @overlayAppear
+    (click)="toggleSidebar()"
 ></div>

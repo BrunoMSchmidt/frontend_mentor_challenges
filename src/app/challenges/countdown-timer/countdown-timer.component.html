@@ -1,58 +1,58 @@
 <div class="bg">
-  <div class="bg__image"></div>
-  <div class="bg__stars"></div>
+    <div class="bg__image"></div>
+    <div class="bg__stars"></div>
 </div>
 
 <div class="container">
-  <dp-date-picker #datePicker (onSelect)="setFinishTime($any($event.date)._d); log($event)" mode="daytime" theme="dp-material" [config]="configDate"></dp-date-picker>
+    <!-- <dp-date-picker #datePicker (onSelect)="setFinishTime($any($event.date)._d); log($event)" mode="daytime" theme="dp-material" [config]="configDate"></dp-date-picker> -->
 
-  <h1>We're launching soon</h1>
+    <h1>We're launching soon</h1>
 
-  <div class="items">
-    <div class="item">
-      <div class="box">
-        <p>
-          {{ timeLeft.days }}
-        </p>
-      </div>
-      <div class="text">DAYS</div>
+    <div class="items">
+        <div class="item">
+            <div class="box">
+                <p>
+                    {{ timeLeft.days }}
+                </p>
+            </div>
+            <div class="text">DAYS</div>
+        </div>
+        <div class="item">
+            <div class="box">
+                <p>
+                    {{ timeLeft.hours }}
+                </p>
+            </div>
+            <div class="text">HOURS</div>
+        </div>
+        <div class="item">
+            <div class="box">
+                <p>
+                    {{ timeLeft.minutes }}
+                </p>
+            </div>
+            <div class="text">MINUTES</div>
+        </div>
+        <div class="item">
+            <div class="box">
+                <p>
+                    {{ timeLeft.seconds }}
+                </p>
+            </div>
+            <div class="text">SECONDS</div>
+        </div>
     </div>
-    <div class="item">
-      <div class="box">
-        <p>
-          {{ timeLeft.hours }}
-        </p>
-      </div>
-      <div class="text">HOURS</div>
-    </div>
-    <div class="item">
-      <div class="box">
-        <p>
-          {{ timeLeft.minutes }}
-        </p>
-      </div>
-      <div class="text">MINUTES</div>
-    </div>
-    <div class="item">
-      <div class="box">
-        <p>
-          {{ timeLeft.seconds }}
-        </p>
-      </div>
-      <div class="text">SECONDS</div>
-    </div>
-  </div>
 
-  <div class="social medias">
-    <div class="facebook"></div>
-    <div class="pinterest"></div>
-    <div class="instagram"></div>
-  </div>
+    <div class="social medias">
+        <div class="facebook"></div>
+        <div class="pinterest"></div>
+        <div class="instagram"></div>
+    </div>
 
-  <div class="attribution">
-    Challenge by
-    <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
-      >Frontend Mentor</a
-    >. Coded by <a href="#">Your Name Here</a>.
-  </div>
+    <div class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+            >Frontend Mentor</a
+        >. Coded by <a href="#">Your Name Here</a>.
+    </div>
 </div>

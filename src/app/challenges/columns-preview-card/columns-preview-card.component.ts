@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
 @Component({
-  selector: 'app-columns-preview-card',
-  templateUrl: './columns-preview-card.component.html',
-  styleUrls: ['./columns-preview-card.component.scss']
+    selector: 'app-columns-preview-card',
+    templateUrl: './columns-preview-card.component.html',
+    styleUrls: ['./columns-preview-card.component.scss'],
 })
 export class ColumnsPreviewCardComponent implements OnInit {
+    constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+    ngOnInit(): void {}
 }

@@ -1,70 +1,68 @@
 <div id="page-container">
-  <div id="page">
-    <div class="card main">
-      <div class="upper">
-        <img
-          src="/assets/challenges/time-tracking-dashboard/images/image-jeremy.png"
-          alt=""
-        />
-        <div class="text">
-          <p>Report for</p>
-          <h1>Jeremy Robson</h1>
-        </div>
-      </div>
+    <div id="page">
+        <div class="card main">
+            <div class="upper">
+                <img
+                    src="/assets/challenges/time-tracking-dashboard/images/image-jeremy.png"
+                    alt=""
+                />
+                <div class="text">
+                    <p>Report for</p>
+                    <h1>Jeremy Robson</h1>
+                </div>
+            </div>
 
-      <div class="menu">
-        <div
-          class="item"
-          [ngClass]="{ active: timeframe == 'daily' }"
-          (click)="setDaily()"
-        >
-          Daily
+            <div class="menu">
+                <div
+                    class="item"
+                    [ngClass]="{ active: timeframe === 'daily' }"
+                    (click)="setDaily()"
+                >
+                    Daily
+                </div>
+                <div
+                    class="item"
+                    [ngClass]="{ active: timeframe === 'weekly' }"
+                    (click)="setWeekly()"
+                >
+                    Weekly
+                </div>
+                <div
+                    class="item"
+                    [ngClass]="{ active: timeframe === 'monthly' }"
+                    (click)="setMonthly()"
+                >
+                    Monthly
+                </div>
+            </div>
         </div>
-        <div
-          class="item"
-          [ngClass]="{ active: timeframe == 'weekly' }"
-          (click)="setWeekly()"
-        >
-          Weekly
+
+        <div class="card" *ngFor="let data of data$ | async">
+            <div class="bg-icon"></div>
+
+            <div class="upper">
+                <header>
+                    <h2>{{ data.title }}</h2>
+                    <img
+                        src="/assets/challenges/time-tracking-dashboard/images/icon-ellipsis.svg"
+                    />
+                </header>
+
+                <div class="text">
+                    <h3>{{ data.timeframes[timeframe].current }}hrs</h3>
+                    <p>
+                        {{
+                            timeframe === 'daily'
+                                ? 'Yesterday'
+                                : timeframe === 'weekly'
+                                ? 'Last Week'
+                                : 'Last Month'
+                        }}
+                        -
+                        {{ data.timeframes[timeframe].previous }}hrs
+                    </p>
+                </div>
+            </div>
         </div>
-        <div
-          class="item"
-          [ngClass]="{ active: timeframe == 'monthly' }"
-          (click)="setMonthly()"
-        >
-          Monthly
-        </div>
-      </div>
     </div>
-
-    <div class="card" *ngFor="let data of data$ | async">
-      <div class="bg-icon"></div>
-
-      <div class="upper">
-        <header>
-          <h2>{{ data.title }}</h2>
-          <img
-            src="/assets/challenges/time-tracking-dashboard/images/icon-ellipsis.svg"
-          />
-        </header>
-
-        <div class="text">
-
-          <h3>{{ data.timeframes[timeframe].current }}hrs</h3>
-          <p>
-            {{
-              timeframe === "daily"
-                ? "Yesterday"
-                : timeframe === "weekly"
-                ? "Last Week"
-                : "Last Month"
-            }}
-            -
-            {{ data.timeframes[timeframe].previous }}hrs
-          </p>
-
-        </div>
-      </div>
-    </div>
-  </div>
 </div>

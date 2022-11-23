@@ -1,61 +1,61 @@
 @import '../styles/variables.scss';
 
 .escolha-wrapper {
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  &.clickable {
-    transition: transform 150ms;
-    cursor: pointer;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-
-  .escolha {
-    width: 80%;
-    height: 80%;
-    background-color: $dark_text;
     border-radius: 50%;
-    background-repeat: no-repeat;
-    background-position: center;
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    &.highlight {
-      box-shadow: 0 0 0px 80px hsla(0, 0%, 100%, 0.02),
-      0 0 0px 160px hsla(0, 0%, 100%, 0.02), 0 0 0px 240px hsla(0, 0%, 100%, 0.02);
-      transition: 250ms linear;
+    &.clickable {
+        transition: transform 150ms;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.1);
+        }
     }
-  }
-
-
-  &.pedra {
-    background: $rock_gradient;
 
     .escolha {
-      background-color: #f7f7fa;
-      background-image: url("/assets/challenges/rock-paper-scissors/images/icon-rock.svg");
+        width: 80%;
+        height: 80%;
+        background-color: $dark_text;
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative;
+
+        &.highlight {
+            box-shadow: 0 0 0px 80px hsla(0, 0%, 100%, 0.02),
+                0 0 0px 160px hsla(0, 0%, 100%, 0.02),
+                0 0 0px 240px hsla(0, 0%, 100%, 0.02);
+            transition: 250ms linear;
+        }
     }
-  }
 
-  &.papel {
-    background: $paper_gradient;
+    &.pedra {
+        background: $rock_gradient;
 
-    .escolha {
-      background-color: #f7f7fa;
-      background-image: url("/assets/challenges/rock-paper-scissors/images/icon-paper.svg");
+        .escolha {
+            background-color: #f7f7fa;
+            background-image: url('/assets/challenges/rock-paper-scissors/images/icon-rock.svg');
+        }
     }
-  }
 
-  &.tesoura {
-    background: $scissors_gradient;
+    &.papel {
+        background: $paper_gradient;
 
-    .escolha {
-      background-color: #f7f7fa;
-      background-image: url("/assets/challenges/rock-paper-scissors/images/icon-scissors.svg");
+        .escolha {
+            background-color: #f7f7fa;
+            background-image: url('/assets/challenges/rock-paper-scissors/images/icon-paper.svg');
+        }
     }
-  }
+
+    &.tesoura {
+        background: $scissors_gradient;
+
+        .escolha {
+            background-color: #f7f7fa;
+            background-image: url('/assets/challenges/rock-paper-scissors/images/icon-scissors.svg');
+        }
+    }
 }

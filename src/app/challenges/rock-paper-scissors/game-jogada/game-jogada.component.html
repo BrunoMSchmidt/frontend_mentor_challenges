@@ -1,27 +1,31 @@
 <div class="jogada">
+    <div class="jogador">
+        <div class="text">YOU PICKED</div>
 
-  <div class="jogador">
-    <div class="text">YOU PICKED</div>
+        <app-game-escolha-circle
+            [size]="200"
+            [escolha]="jogador"
+            [clickable]="false"
+            [highlight]="resultado == 1"
+        >
+        </app-game-escolha-circle>
+    </div>
 
-    <app-game-escolha-circle [size]="200" [escolha]="jogador" [clickable]="false" [highlight]="resultado == 1">
-    </app-game-escolha-circle>
-  </div>
-    
-  <div class="result" *ngIf="resultado != null" @grow>
+    <div class="result" *ngIf="resultado != null" @grow>
+        <div class="text">{{ getResultText() }}</div>
 
-    <div class="text">{{ getResultText() }}</div>
-    
-    <button (click)="resetar()">
-      PLAY AGAIN
-    </button>
-  </div>
+        <button (click)="resetar()">PLAY AGAIN</button>
+    </div>
 
-  <div class="jogador">
-    <div class="text">THE HOUSE PICKED</div>
+    <div class="jogador">
+        <div class="text">THE HOUSE PICKED</div>
 
-    <app-game-escolha-circle [size]="200" [escolha]="computador" [clickable]="false" [highlight]="resultado == -1">
-    </app-game-escolha-circle>
-  </div>
-
-
+        <app-game-escolha-circle
+            [size]="200"
+            [escolha]="computador"
+            [clickable]="false"
+            [highlight]="resultado == -1"
+        >
+        </app-game-escolha-circle>
+    </div>
 </div>

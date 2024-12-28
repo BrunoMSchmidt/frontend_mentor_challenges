@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common'
 import { ReactiveFormsModule } from '@angular/forms'
 import { RouterModule } from '@angular/router'
 import { TimeTrackingDashboardComponent } from './time-tracking-dashboard.component'
-import { HttpClientModule } from '@angular/common/http'
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 
 const routes = [
     {
@@ -12,13 +12,7 @@ const routes = [
     },
 ]
 
-@NgModule({
-    declarations: [TimeTrackingDashboardComponent],
-    imports: [
-        CommonModule,
+@NgModule({ declarations: [TimeTrackingDashboardComponent], imports: [CommonModule,
         ReactiveFormsModule,
-        RouterModule.forChild(routes),
-        HttpClientModule,
-    ],
-})
+        RouterModule.forChild(routes)], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class TimeTrackingDashboardModule {}

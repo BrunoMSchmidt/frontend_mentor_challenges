@@ -5,6 +5,7 @@ import { Component, Input, OnInit } from '@angular/core'
     selector: 'app-game-escolha-circle',
     templateUrl: './game-escolha-circle.component.html',
     styleUrls: ['./game-escolha-circle.component.scss'],
+    standalone: false
 })
 export class GameEscolhaCircleComponent implements OnInit {
     @Input() escolha: Escolha | null = null

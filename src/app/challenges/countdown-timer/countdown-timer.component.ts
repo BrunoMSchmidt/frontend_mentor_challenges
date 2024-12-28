@@ -5,6 +5,7 @@ import { interval, Subscription } from 'rxjs'
     selector: 'app-countdown-timer',
     templateUrl: './countdown-timer.component.html',
     styleUrls: ['./countdown-timer.component.scss'],
+    standalone: false
 })
 export class CountdownTimerComponent implements OnInit {
     finishTime: Date = new Date(2022, 11, 30)

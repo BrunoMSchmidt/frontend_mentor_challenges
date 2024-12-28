@@ -8,6 +8,7 @@ export type Resultado = -1 | 0 | 1
     selector: 'app-game',
     templateUrl: './game.component.html',
     styleUrls: ['./game.component.scss'],
+    standalone: false
 })
 export class GameComponent implements OnInit {
     telaAtual: Tela = 'escolha'

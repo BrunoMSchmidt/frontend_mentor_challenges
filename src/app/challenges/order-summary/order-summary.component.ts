@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core'
     selector: 'app-order-summary',
     templateUrl: './order-summary.component.html',
     styleUrls: ['./order-summary.component.scss'],
+    standalone: false
 })
 export class OrderSummaryComponent implements OnInit {
     constructor() {}

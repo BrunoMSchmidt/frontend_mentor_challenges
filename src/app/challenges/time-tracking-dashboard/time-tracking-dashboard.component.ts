@@ -12,6 +12,7 @@ enum Timeframes {
     selector: 'app-time-tracking-dashboard',
     templateUrl: './time-tracking-dashboard.component.html',
     styleUrls: ['./time-tracking-dashboard.component.scss'],
+    standalone: false
 })
 export class TimeTrackingDashboardComponent implements OnInit {
     timeframe: Timeframes = Timeframes.DAILY

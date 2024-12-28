@@ -10,13 +10,11 @@ import { Escolha, Resultado } from '../game.component'
         trigger('grow', [
             transition(':enter', [
                 style({ width: 0, opacity: 0, transform: 'translateY(-120%)' }),
-                animate(
-                    '200ms ease-out',
-                    style({ width: '*', opacity: 1, transform: 'none' })
-                ),
+                animate('200ms ease-out', style({ width: '*', opacity: 1, transform: 'none' })),
             ]),
         ]),
     ],
+    standalone: false
 })
 export class GameJogadaComponent implements OnInit {
     @Input() jogador: Escolha | null = null

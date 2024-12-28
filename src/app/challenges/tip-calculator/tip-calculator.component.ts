@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs'
     selector: 'app-tip-calculator',
     templateUrl: './tip-calculator.component.html',
     styleUrls: ['./tip-calculator.component.scss'],
+    standalone: false
 })
 export class TipCalculatorComponent {
     percentages: number[] = [5, 10, 15, 25, 50]

@@ -10,6 +10,7 @@ import { Todo } from './todo'
     selector: 'app-todo',
     templateUrl: './todo.component.html',
     styleUrls: ['./todo.component.scss'],
+    standalone: false
 })
 export class TodoComponent implements OnInit {
     darkTheme = false

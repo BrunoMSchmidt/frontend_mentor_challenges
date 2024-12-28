@@ -5,6 +5,7 @@ import { Escolha } from '../game.component'
     selector: 'app-game-escolhas',
     templateUrl: './game-escolhas.component.html',
     styleUrls: ['./game-escolhas.component.scss'],
+    standalone: false
 })
 export class GameEscolhasComponent implements OnInit {
     public escolhasPossiveis: Escolha[] = ['papel', 'tesoura', 'pedra']

@@ -7,13 +7,13 @@ import {
     ReactiveFormsModule,
 } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { NgIf, NgClass, NgFor, PercentPipe } from '@angular/common';
+import { NgClass, PercentPipe } from '@angular/common';
 
 @Component({
     selector: 'app-tip-calculator',
     templateUrl: './tip-calculator.component.html',
     styleUrls: ['./tip-calculator.component.scss'],
-    imports: [ReactiveFormsModule, NgIf, NgClass, NgFor, PercentPipe],
+    imports: [ReactiveFormsModule, NgClass, PercentPipe],
 })
 export class TipCalculatorComponent implements OnDestroy {
     percentages: number[] = [5, 10, 15, 25, 50];

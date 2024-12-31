@@ -12,13 +12,15 @@
                     <div class="header">
                         <span class="name">Bill</span>
                         <div class="errors">
-                            <span class="error" *ngIf="isFieldInvalid(bill) && bill.hasError('required')">
-                                Required
-                            </span>
-                            <span class="error" *ngIf="isFieldInvalid(bill) && bill.hasError('min')">
-                                Can't be
-                                {{ bill.getError('min').actual >= 0 ? 'zero' : 'negative' }}
-                            </span>
+                            @if (isFieldInvalid(bill) && bill.hasError('required')) {
+                                <span class="error"> Required </span>
+                            }
+                            @if (isFieldInvalid(bill) && bill.hasError('min')) {
+                                <span class="error">
+                                    Can't be
+                                    {{ bill.getError('min').actual >= 0 ? 'zero' : 'negative' }}
+                                </span>
+                            }
                         </div>
                     </div>
                     <label for="bill" class="input__wrapper" [ngClass]="{ invalid: isFieldInvalid(bill) }">
@@ -31,21 +33,24 @@
                 <div class="field">
                     <div class="header">
                         <span class="name"> Select Tip % </span>
-                        <div class="errors" *ngIf="tipPercent.hasError('min')">
-                            <span class="error">Can't be negative</span>
-                        </div>
+                        @if (tipPercent.hasError('min')) {
+                            <div class="errors">
+                                <span class="error">Can't be negative</span>
+                            </div>
+                        }
                     </div>
                     <div class="buttons">
-                        <button
-                            type="button"
-                            *ngFor="let percentage of percentages"
-                            (click)="tipPercent.setValue(percentage); tipCustomInput.value = ''"
-                            [ngClass]="{
-                                active: percentage === tipPercent.value,
-                            }"
-                        >
-                            {{ percentage / 100 | percent }}
-                        </button>
+                        @for (percentage of percentages; track percentage) {
+                            <button
+                                type="button"
+                                (click)="tipPercent.setValue(percentage); tipCustomInput.value = ''"
+                                [ngClass]="{
+                                    active: percentage === tipPercent.value,
+                                }"
+                            >
+                                {{ percentage / 100 | percent }}
+                            </button>
+                        }
 
                         <input
                             #tipCustomInput
@@ -65,16 +70,18 @@
                     <div class="header">
                         <span class="name">People</span>
                         <div class="errors">
-                            <span class="error" *ngIf="isFieldInvalid(people) && people.hasError('required')">
-                                Required
-                            </span>
-                            <span class="error" *ngIf="isFieldInvalid(people) && people.hasError('min')">
-                                Can't be
-                                {{ people.getError('min').actual >= 0 ? 'zero' : 'negative' }}
-                            </span>
-                            <span class="error" *ngIf="isFieldInvalid(people) && people.hasError('pattern')">
-                                Only integers
-                            </span>
+                            @if (isFieldInvalid(people) && people.hasError('required')) {
+                                <span class="error"> Required </span>
+                            }
+                            @if (isFieldInvalid(people) && people.hasError('min')) {
+                                <span class="error">
+                                    Can't be
+                                    {{ people.getError('min').actual >= 0 ? 'zero' : 'negative' }}
+                                </span>
+                            }
+                            @if (isFieldInvalid(people) && people.hasError('pattern')) {
+                                <span class="error"> Only integers </span>
+                            }
                         </div>
                     </div>
                     <label for="people" class="input__wrapper" [ngClass]="{ invalid: isFieldInvalid(people) }">

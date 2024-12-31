@@ -4,7 +4,7 @@ import { GameJogadaComponent } from './game-jogada/game-jogada.component';
 import { EscolhaEnum } from '../enums/escolha.enum';
 import { ResultadoEnum } from '../enums/resultado.enum';
 import { TelaEnum } from '../enums/tela.enum';
-import { NgIf } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { timer } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -13,7 +13,7 @@ import { take } from 'rxjs/operators';
     selector: 'app-game',
     templateUrl: './game.component.html',
     styleUrls: ['./game.component.scss'],
-    imports: [GameHeaderComponent, NgIf, GameEscolhasComponent, GameJogadaComponent],
+    imports: [GameHeaderComponent, GameEscolhasComponent, GameJogadaComponent],
 })
 export class GameComponent {
     telaAtual: TelaEnum = TelaEnum.Escolha;

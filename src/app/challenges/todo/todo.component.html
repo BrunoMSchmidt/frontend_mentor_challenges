@@ -21,53 +21,54 @@
         <form class="item-container form" [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="check"></div>
             <input type="text" formControlName="todo" placeholder="Create a new todo..." />
-            <img
-                src="/assets/challenges/todo-app/images/icon-check.svg"
-                *ngIf="fc.todo.valid"
-                (click)="onSubmit()"
-                (keydown.enter)="onSubmit()"
-                tabindex="0"
-                alt="Submit new todo"
-            />
+            @if (fc.todo.valid) {
+                <img
+                    src="/assets/challenges/todo-app/images/icon-check.svg"
+                    (click)="onSubmit()"
+                    (keydown.enter)="onSubmit()"
+                    tabindex="0"
+                    alt="Submit new todo"
+                />
+            }
         </form>
 
-        <div class="todo-list" *ngIf="filteredTodos.length > 0; else noTodos">
-            <div
-                class="item-container todo"
-                [ngClass]="{ completed: todo.state === 'completed' }"
-                *ngFor="let todo of filteredTodos"
-                (click)="changeTodoState(todo)"
-                (keydown.enter)="changeTodoState(todo)"
-                tabindex="0"
-            >
-                <div class="check">
-                    <div class="check-icon"></div>
-                </div>
-                <p>{{ todo.description }}</p>
-                <div
-                    class="delete"
-                    (click)="removeTodo(todo.id)"
-                    (keydown.enter)="removeTodo(todo.id)"
-                    tabindex="0"
-                ></div>
+        @if (filteredTodos.length > 0) {
+            <div class="todo-list">
+                @for (todo of filteredTodos; track todo) {
+                    <div
+                        class="item-container todo"
+                        [ngClass]="{ completed: todo.state === 'completed' }"
+                        (click)="changeTodoState(todo)"
+                        (keydown.enter)="changeTodoState(todo)"
+                        tabindex="0"
+                    >
+                        <div class="check">
+                            <div class="check-icon"></div>
+                        </div>
+                        <p>{{ todo.description }}</p>
+                        <div
+                            class="delete"
+                            (click)="removeTodo(todo.id)"
+                            (keydown.enter)="removeTodo(todo.id)"
+                            tabindex="0"
+                        ></div>
+                    </div>
+                }
+                <footer class="item-container todo">
+                    <p>
+                        {{ itemsLeft > 0 ? itemsLeft + ' item' + (itemsLeft > 1 ? 's' : '') : 'No items' }}
+                        left
+                    </p>
+                    <p (click)="clearCompleted()" (keydown.enter)="clearCompleted()" tabindex="0">Clear Completed</p>
+                </footer>
             </div>
-
-            <footer class="item-container todo">
-                <p>
-                    {{ itemsLeft > 0 ? itemsLeft + ' item' + (itemsLeft > 1 ? 's' : '') : 'No items' }}
-                    left
-                </p>
-                <p (click)="clearCompleted()" (keydown.enter)="clearCompleted()" tabindex="0">Clear Completed</p>
-            </footer>
-        </div>
-
-        <ng-template #noTodos>
+        } @else {
             <div class="todo-list">
                 <div class="item-container todo" style="border-radius: 5px">
                     <p>The list is empty...</p>
                 </div>
             </div>
-        </ng-template>
+        }
 
         <div class="item-container menu">
             <p>
@@ -110,9 +111,9 @@
     <!-- Clear Completed All Active Completed Drag and drop to reorder -->
 
     <!-- <div class="attribution">
-      Challenge by
-      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
-        >Frontend Mentor</a
-      >. Coded by <a href="#">Your Name Here</a>.
-    </div> -->
+  Challenge by
+  <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+    >Frontend Mentor</a
+    >. Coded by <a href="#">Your Name Here</a>.
+  </div> -->
 </div>

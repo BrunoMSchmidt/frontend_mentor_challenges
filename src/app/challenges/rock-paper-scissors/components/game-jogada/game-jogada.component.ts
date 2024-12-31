@@ -3,7 +3,6 @@ import { EscolhaEnum } from '../../enums/escolha.enum';
 import { ResultadoEnum } from '../../enums/resultado.enum';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-game-jogada',
@@ -17,7 +16,7 @@ import { NgIf } from '@angular/common';
             ]),
         ]),
     ],
-    imports: [GameEscolhaCircleComponent, NgIf],
+    imports: [GameEscolhaCircleComponent],
 })
 export class GameJogadaComponent {
     @Input() jogador: EscolhaEnum | null = null;

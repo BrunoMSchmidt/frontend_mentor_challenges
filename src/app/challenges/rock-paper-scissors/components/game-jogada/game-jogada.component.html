@@ -11,11 +11,12 @@
         </app-game-escolha-circle>
     </div>
 
-    <div class="result" *ngIf="resultado !== null" @grow>
-        <div class="text">{{ getResultText() }}</div>
-
-        <button (click)="resetar()">PLAY AGAIN</button>
-    </div>
+    @if (resultado !== null) {
+        <div class="result" @grow>
+            <div class="text">{{ getResultText() }}</div>
+            <button (click)="resetar()">PLAY AGAIN</button>
+        </div>
+    }
 
     <div class="jogador">
         <div class="text">THE HOUSE PICKED</div>

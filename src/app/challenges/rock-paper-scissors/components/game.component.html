@@ -1,15 +1,18 @@
 <div id="game-container">
     <app-game-header [score]="score"> </app-game-header>
 
-    <app-game-escolhas *ngIf="telaAtual === TelaEnum.Escolha" (escolha)="escolher($event)"></app-game-escolhas>
+    @if (telaAtual === TelaEnum.Escolha) {
+        <app-game-escolhas (escolha)="escolher($event)"></app-game-escolhas>
+    }
 
-    <app-game-jogada
-        *ngIf="telaAtual === TelaEnum.Jogada"
-        [jogador]="escolhaJogador"
-        [computador]="escolhaComputador"
-        [resultado]="resultado"
-        (resetEvent)="resetar()"
-    ></app-game-jogada>
+    @if (telaAtual === TelaEnum.Jogada) {
+        <app-game-jogada
+            [jogador]="escolhaJogador"
+            [computador]="escolhaComputador"
+            [resultado]="resultado"
+            (resetEvent)="resetar()"
+        ></app-game-jogada>
+    }
 
     <ng-template #telaDeEscolha> </ng-template>
 </div>

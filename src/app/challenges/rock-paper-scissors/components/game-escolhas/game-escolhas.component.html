@@ -1,7 +1,5 @@
 <div class="escolhas">
-    <app-game-escolha-circle
-        *ngFor="let escolha of escolhasPossiveis"
-        [escolha]="escolha"
-        (click)="escolher(escolha)"
-    ></app-game-escolha-circle>
+    @for (escolha of escolhasPossiveis; track escolha) {
+        <app-game-escolha-circle [escolha]="escolha" (click)="escolher(escolha)"></app-game-escolha-circle>
+    }
 </div>

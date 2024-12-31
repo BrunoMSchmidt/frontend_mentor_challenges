@@ -18,8 +18,8 @@ You can use any tools you like to help you complete the challenge. So if you've 
 
 Your users should be able to:
 
--   View the optimal layout depending on their device's screen size
--   See hover states for interactive elements
+- View the optimal layout depending on their device's screen size
+- See hover states for interactive elements
 
 Want some support on the challenge? [Join our Slack community](https://www.frontendmentor.io/slack) and ask questions in the **#help** channel.
 
@@ -50,9 +50,9 @@ Feel free to use any workflow that you feel comfortable with. Below is a suggest
 
 As mentioned above, there are many ways to host your project for free. Our recommend hosts are:
 
--   [GitHub Pages](https://pages.github.com/)
--   [Vercel](https://vercel.com/)
--   [Netlify](https://www.netlify.com/)
+- [GitHub Pages](https://pages.github.com/)
+- [Vercel](https://vercel.com/)
+- [Netlify](https://www.netlify.com/)
 
 You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
 

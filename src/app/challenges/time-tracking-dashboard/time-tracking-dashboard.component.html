@@ -40,24 +40,33 @@
             </div>
         </div>
 
-        <div class="card" *ngFor="let data of data$ | async">
-            <div class="bg-icon"></div>
-
-            <div class="upper">
-                <header>
-                    <h2>{{ data.title }}</h2>
-                    <img src="/assets/challenges/time-tracking-dashboard/images/icon-ellipsis.svg" alt="Menu icon" />
-                </header>
-
-                <div class="text">
-                    <h3>{{ data.timeframes[timeframe].current }}hrs</h3>
-                    <p>
-                        {{ timeframe === 'daily' ? 'Yesterday' : timeframe === 'weekly' ? 'Last Week' : 'Last Month' }}
-                        -
-                        {{ data.timeframes[timeframe].previous }}hrs
-                    </p>
+        @for (data of data$ | async; track data) {
+            <div class="card">
+                <div class="bg-icon"></div>
+                <div class="upper">
+                    <header>
+                        <h2>{{ data.title }}</h2>
+                        <img
+                            src="/assets/challenges/time-tracking-dashboard/images/icon-ellipsis.svg"
+                            alt="Menu icon"
+                        />
+                    </header>
+                    <div class="text">
+                        <h3>{{ data.timeframes[timeframe].current }}hrs</h3>
+                        <p>
+                            {{
+                                timeframe === 'daily'
+                                    ? 'Yesterday'
+                                    : timeframe === 'weekly'
+                                      ? 'Last Week'
+                                      : 'Last Month'
+                            }}
+                            -
+                            {{ data.timeframes[timeframe].previous }}hrs
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
 </div>

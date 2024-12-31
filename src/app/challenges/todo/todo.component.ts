@@ -1,13 +1,13 @@
 import { Todo } from './todo';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { NgIf, NgFor, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'app-todo',
     templateUrl: './todo.component.html',
     styleUrls: ['./todo.component.scss'],
-    imports: [ReactiveFormsModule, NgIf, NgFor, NgClass],
+    imports: [ReactiveFormsModule, NgClass],
 })
 export class TodoComponent implements OnInit {
     darkTheme = false;

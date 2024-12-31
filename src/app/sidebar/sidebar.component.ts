@@ -1,7 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-sidebar',
@@ -28,7 +27,7 @@ import { NgIf } from '@angular/common';
             transition('* => void', [animate(200, style({ backgroundColor: 'rgba(0,0,0,0)' }))]),
         ]),
     ],
-    imports: [RouterLink, RouterLinkActive, NgIf],
+    imports: [RouterLink, RouterLinkActive],
 })
 export class SidebarComponent {
     isOpen = false;

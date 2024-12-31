@@ -3,7 +3,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NgClass, NgFor, AsyncPipe } from '@angular/common';
+import { NgClass, AsyncPipe } from '@angular/common';
 
 enum Timeframes {
     DAILY = 'daily',
@@ -15,7 +15,7 @@ enum Timeframes {
     selector: 'app-time-tracking-dashboard',
     templateUrl: './time-tracking-dashboard.component.html',
     styleUrls: ['./time-tracking-dashboard.component.scss'],
-    imports: [NgClass, NgFor, AsyncPipe],
+    imports: [NgClass, AsyncPipe],
 })
 export class TimeTrackingDashboardComponent {
     timeframe: Timeframes = Timeframes.DAILY;

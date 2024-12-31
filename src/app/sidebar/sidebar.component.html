@@ -56,11 +56,12 @@
     </nav>
 </div>
 
-<div
-    class="sidebar overlay"
-    *ngIf="isOpen"
-    @overlayAppear
-    (click)="toggleSidebar()"
-    (keyup.enter)="toggleSidebar()"
-    tabindex="0"
-></div>
+@if (isOpen) {
+    <div
+        class="sidebar overlay"
+        @overlayAppear
+        (click)="toggleSidebar()"
+        (keyup.enter)="toggleSidebar()"
+        tabindex="0"
+    ></div>
+}

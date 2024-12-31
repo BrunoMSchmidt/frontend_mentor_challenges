@@ -18,10 +18,10 @@ You can use any tools you like to help you complete the challenge. So if you've 
 
 Your users should be able to:
 
--   View the optimal layout for the game depending on their device's screen size
--   Play Rock, Paper, Scissors against the computer
--   Maintain the state of the score after refreshing the browser _(optional)_
--   **Bonus**: Play Rock, Paper, Scissors, Lizard, Spock against the computer _(optional)_
+- View the optimal layout for the game depending on their device's screen size
+- Play Rock, Paper, Scissors against the computer
+- Maintain the state of the score after refreshing the browser _(optional)_
+- **Bonus**: Play Rock, Paper, Scissors, Lizard, Spock against the computer _(optional)_
 
 ### Rules
 
@@ -29,22 +29,22 @@ If the player wins, they gain 1 point. If the computer wins, the player loses on
 
 #### Original
 
--   Paper beats Rock
--   Rock beats Scissors
--   Scissors beats Paper
+- Paper beats Rock
+- Rock beats Scissors
+- Scissors beats Paper
 
 #### Bonus
 
--   Scissors beats Paper
--   Paper beats Rock
--   Rock beats Lizard
--   Lizard beats Spock
--   Spock beats Scissors
--   Scissors beats Lizard
--   Paper beats Spock
--   Rock beats Scissors
--   Lizard beats Paper
--   Spock beats Rock
+- Scissors beats Paper
+- Paper beats Rock
+- Rock beats Lizard
+- Lizard beats Spock
+- Spock beats Scissors
+- Scissors beats Lizard
+- Paper beats Spock
+- Rock beats Scissors
+- Lizard beats Paper
+- Spock beats Rock
 
 Not sure what Rock, Paper, Scissors, Lizard, Spock is? [Check out this clip from The Big Bang Theory](https://www.youtube.com/watch?v=iSHPVCBsnLw).
 
@@ -77,9 +77,9 @@ Feel free to use any workflow that you feel comfortable with. Below is a suggest
 
 As mentioned above, there are many ways to host your project for free. Our recommend hosts are:
 
--   [GitHub Pages](https://pages.github.com/)
--   [Vercel](https://vercel.com/)
--   [Netlify](https://www.netlify.com/)
+- [GitHub Pages](https://pages.github.com/)
+- [Vercel](https://vercel.com/)
+- [Netlify](https://www.netlify.com/)
 
 You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
 

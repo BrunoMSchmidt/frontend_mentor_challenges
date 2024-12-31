@@ -25,7 +25,8 @@
         position: relative;
 
         &.highlight {
-            box-shadow: 0 0 0px 80px hsla(0, 0%, 100%, 0.02),
+            box-shadow:
+                0 0 0px 80px hsla(0, 0%, 100%, 0.02),
                 0 0 0px 160px hsla(0, 0%, 100%, 0.02),
                 0 0 0px 240px hsla(0, 0%, 100%, 0.02);
             transition: 250ms linear;

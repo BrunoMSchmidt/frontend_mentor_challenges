@@ -1,11 +1,12 @@
 import { GameEscolhaCircleComponent } from '../game-escolha-circle/game-escolha-circle.component';
 import { EscolhaEnum } from '../../enums/escolha.enum';
-import { Component, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output } from '@angular/core';
 
 @Component({
     selector: 'app-game-escolhas',
     templateUrl: './game-escolhas.component.html',
     styleUrls: ['./game-escolhas.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [GameEscolhaCircleComponent],
 })
 export class GameEscolhasComponent {

@@ -1,15 +1,19 @@
+/* eslint-disable import-x/namespace */
+/* eslint-disable import-x/default */
+/* eslint-disable import-x/no-named-as-default */
+/* eslint-disable import-x/no-named-as-default-member */
 import eslint from '@eslint/js';
-// eslint-disable-next-line import/no-unresolved
 import tseslint from 'typescript-eslint';
 import angular from 'angular-eslint';
 import unusedImports from 'eslint-plugin-unused-imports';
 import sonarjs from 'eslint-plugin-sonarjs';
 import eslintPluginPrettierRecomemnded from 'eslint-plugin-prettier/recommended';
-import importPlugin from 'eslint-plugin-import';
+import eslintPluginImportX from 'eslint-plugin-import-x';
 
 export default tseslint.config(
     eslintPluginPrettierRecomemnded,
-    importPlugin.flatConfigs.recommended,
+    eslintPluginImportX.flatConfigs.recommended,
+    eslintPluginImportX.flatConfigs.typescript,
     {
         files: ['**/*.ts'],
         plugins: {
@@ -40,6 +44,7 @@ export default tseslint.config(
                     style: 'kebab-case',
                 },
             ],
+            '@angular-eslint/prefer-on-push-component-change-detection': 'error',
             '@typescript-eslint/no-unused-vars': 'off',
             '@typescript-eslint/explicit-function-return-type': 'warn',
             'unused-imports/no-unused-imports': 'error',
@@ -52,9 +57,11 @@ export default tseslint.config(
                     argsIgnorePattern: '^_',
                 },
             ],
-            'import/no-dynamic-require': 'warn',
-            'import/no-nodejs-modules': 'warn',
-            'import/order': ['error', { groups: ['index', 'sibling', 'parent', 'internal', 'external', 'builtin'] }],
+            'import-x/no-dynamic-require': 'warn',
+            'import-x/no-nodejs-modules': 'warn',
+            'import-x/order': ['error', { groups: ['index', 'sibling', 'parent', 'internal', 'external', 'builtin'] }],
+            // SonarJS
+            'sonarjs/unused-import': 'off', // Regra já coberta pelo plugin unused-imports
         },
         settings: {
             'import/resolver': {
@@ -71,6 +78,10 @@ export default tseslint.config(
     {
         files: ['**/*.html'],
         extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
-        rules: { 'import/namespace': 'off' },
+        rules: { 'import-x/namespace': 'off' },
+    },
+    {
+        files: ['**/*.js'],
+        ignores: ['eslint.config.js'],
     },
 );

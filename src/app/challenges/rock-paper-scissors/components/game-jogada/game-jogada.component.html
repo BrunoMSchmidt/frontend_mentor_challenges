@@ -13,7 +13,7 @@
 
     @if (resultado() !== null) {
         <div class="result" @grow>
-            <div class="text">{{ getResultText() }}</div>
+            <div class="text">{{ textoResultado() }}</div>
             <button (click)="resetar()">PLAY AGAIN</button>
         </div>
     }

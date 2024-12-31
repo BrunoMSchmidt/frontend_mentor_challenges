@@ -1,4 +1,4 @@
-<div class="custom-menu" [@slideFromLeft]="isOpen ? 'visible' : 'hidden'">
+<div class="custom-menu" [@slideFromLeft]="isOpen() ? 'visible' : 'hidden'">
     <div class="menu-header">
         <h1>Challenges</h1>
         <div class="menu-icon" (click)="toggleSidebar()" (keyup.enter)="toggleSidebar()" tabindex="0">
@@ -56,7 +56,7 @@
     </nav>
 </div>
 
-@if (isOpen) {
+@if (isOpen()) {
     <div
         class="sidebar overlay"
         @overlayAppear

@@ -6,26 +6,20 @@
         </div>
 
         <div id="calculator">
-            <form [formGroup]="form" autocomplete="off">
+            <div class="form" autocomplete="off">
                 <!-- BILL -->
                 <div class="field">
                     <div class="header">
                         <span class="name">Bill</span>
                         <div class="errors">
-                            @if (isFieldInvalid(bill) && bill.hasError('required')) {
-                                <span class="error"> Required </span>
-                            }
-                            @if (isFieldInvalid(bill) && bill.hasError('min')) {
-                                <span class="error">
-                                    Can't be
-                                    {{ bill.getError('min').actual >= 0 ? 'zero' : 'negative' }}
-                                </span>
+                            @if (billError()) {
+                                <span class="error"> {{ billError() }} </span>
                             }
                         </div>
                     </div>
-                    <label for="bill" class="input__wrapper" [ngClass]="{ invalid: isFieldInvalid(bill) }">
+                    <label for="bill" class="input__wrapper" [ngClass]="{ invalid: !!billError() }">
                         <div class="input icon dollar"></div>
-                        <input formControlName="bill" id="bill" type="number" placeholder="0" />
+                        <input [(ngModel)]="bill" id="bill" type="number" placeholder="0" />
                     </label>
                 </div>
 
@@ -33,9 +27,9 @@
                 <div class="field">
                     <div class="header">
                         <span class="name"> Select Tip % </span>
-                        @if (tipPercent.hasError('min')) {
+                        @if (tipPercentError()) {
                             <div class="errors">
-                                <span class="error">Can't be negative</span>
+                                <span class="error">{{ tipPercentError() }}</span>
                             </div>
                         }
                     </div>
@@ -43,9 +37,9 @@
                         @for (percentage of percentages; track percentage) {
                             <button
                                 type="button"
-                                (click)="tipPercent.setValue(percentage); tipCustomInput.value = ''"
+                                (click)="updatePercentageAndResetInput(percentage)"
                                 [ngClass]="{
-                                    active: percentage === tipPercent.value,
+                                    active: percentage === tipPercent(),
                                 }"
                             >
                                 {{ percentage / 100 | percent }}
@@ -56,10 +50,10 @@
                             #tipCustomInput
                             type="number"
                             placeholder="Custom"
-                            formControlName="tipPercent"
+                            (input)="updatePercentage(+tipCustomInput.value)"
                             [ngClass]="{
-                                active: +tipCustomInput.value === tipPercent.value,
-                                invalid: isFieldInvalid(tipPercent),
+                                active: tipCustomInput.value && +tipCustomInput.value === tipPercent(),
+                                invalid: !!tipPercentError(),
                             }"
                         />
                     </div>
@@ -70,26 +64,17 @@
                     <div class="header">
                         <span class="name">People</span>
                         <div class="errors">
-                            @if (isFieldInvalid(people) && people.hasError('required')) {
-                                <span class="error"> Required </span>
-                            }
-                            @if (isFieldInvalid(people) && people.hasError('min')) {
-                                <span class="error">
-                                    Can't be
-                                    {{ people.getError('min').actual >= 0 ? 'zero' : 'negative' }}
-                                </span>
-                            }
-                            @if (isFieldInvalid(people) && people.hasError('pattern')) {
-                                <span class="error"> Only integers </span>
+                            @if (peopleError()) {
+                                <span class="error"> ({{ peopleError() }}) </span>
                             }
                         </div>
                     </div>
-                    <label for="people" class="input__wrapper" [ngClass]="{ invalid: isFieldInvalid(people) }">
+                    <label for="people" class="input__wrapper" [ngClass]="{ invalid: peopleError() }">
                         <div class="input icon person"></div>
-                        <input formControlName="people" id="people" type="number" placeholder="0" />
+                        <input [(ngModel)]="people" id="people" type="number" placeholder="0" />
                     </label>
                 </div>
-            </form>
+            </div>
 
             <div id="result">
                 <div class="item">
@@ -98,7 +83,7 @@
                         <p class="secondary">/ person</p>
                     </div>
                     <span class="value">
-                        {{ '$' + result.tipPerPerson.toFixed(2) }}
+                        {{ '$' + result().tipPerPerson.toFixed(2) }}
                     </span>
                 </div>
 
@@ -108,7 +93,7 @@
                         <p>/ person</p>
                     </div>
                     <span class="value">
-                        {{ '$' + result.totalPerPerson.toFixed(2) }}
+                        {{ '$' + result().totalPerPerson.toFixed(2) }}
                     </span>
                 </div>
 

@@ -17,9 +17,9 @@ export const challengeRoutes: Routes = [
     {
         path: 'time-tracking-dashboard',
         loadComponent: () =>
-            import('./time-tracking-dashboard/time-tracking-dashboard.component').then(
-                m => m.TimeTrackingDashboardComponent,
-            ),
+            import(
+                './time-tracking-dashboard/components/time-tracking-dashboard/time-tracking-dashboard.component'
+            ).then(m => m.TimeTrackingDashboardComponent),
     },
     {
         path: 'countdown-timer',
@@ -27,7 +27,7 @@ export const challengeRoutes: Routes = [
     },
     {
         path: 'todo',
-        loadComponent: () => import('./todo/todo.component').then(m => m.TodoComponent),
+        loadComponent: () => import('./todo/components/todo/todo.component').then(m => m.TodoComponent),
     },
     {
         path: 'rock-paper-scissors',

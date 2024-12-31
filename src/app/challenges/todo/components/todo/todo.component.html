@@ -1,12 +1,12 @@
-<div class="background" [class]="darkTheme ? 'dark' : 'light'">
+<div class="background" [class]="isDarkMode() ? 'dark' : 'light'">
     <div class="background-image"></div>
 </div>
-<div id="page" [class]="darkTheme ? 'dark' : 'light'">
+<div id="page" [class]="isDarkMode() ? 'dark' : 'light'">
     <header>
         <h1>TODO</h1>
         <img
             [src]="
-                darkTheme
+                isDarkMode()
                     ? '/assets/challenges/todo-app/images/icon-sun.svg'
                     : '/assets/challenges/todo-app/images/icon-moon.svg'
             "
@@ -20,8 +20,8 @@
     <main>
         <form class="item-container form" [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="check"></div>
-            <input type="text" formControlName="todo" placeholder="Create a new todo..." />
-            @if (fc.todo.valid) {
+            <input type="text" formControlName="descricao" placeholder="Create a new todo..." />
+            @if (descricaoValida()) {
                 <img
                     src="/assets/challenges/todo-app/images/icon-check.svg"
                     (click)="onSubmit()"
@@ -32,14 +32,14 @@
             }
         </form>
 
-        @if (filteredTodos.length > 0) {
+        @if (filteredTodos().length > 0) {
             <div class="todo-list">
-                @for (todo of filteredTodos; track todo) {
+                @for (todo of filteredTodos(); track todo.id) {
                     <div
                         class="item-container todo"
-                        [ngClass]="{ completed: todo.state === 'completed' }"
-                        (click)="changeTodoState(todo)"
-                        (keydown.enter)="changeTodoState(todo)"
+                        [ngClass]="{ completed: todo.state === TodoStateEnum.Completed }"
+                        (click)="changeTodoState(todo.id)"
+                        (keydown.enter)="changeTodoState(todo.id)"
                         tabindex="0"
                     >
                         <div class="check">
@@ -56,7 +56,7 @@
                 }
                 <footer class="item-container todo">
                     <p>
-                        {{ itemsLeft > 0 ? itemsLeft + ' item' + (itemsLeft > 1 ? 's' : '') : 'No items' }}
+                        {{ itemsLeft() > 0 ? itemsLeft + ' item' + (itemsLeft() > 1 ? 's' : '') : 'No items' }}
                         left
                     </p>
                     <p (click)="clearCompleted()" (keydown.enter)="clearCompleted()" tabindex="0">Clear Completed</p>
@@ -72,33 +72,33 @@
 
         <div class="item-container menu">
             <p>
-                {{ itemsLeft > 0 ? itemsLeft + ' item' + (itemsLeft > 1 ? 's' : '') : 'No items' }}
+                {{ itemsLeft() > 0 ? itemsLeft() + ' item' + (itemsLeft() > 1 ? 's' : '') : 'No items' }}
                 left
             </p>
             <div class="menu-wrapper">
                 <div
                     class="link"
-                    [class.active]="filter === 'all'"
-                    (click)="filter = 'all'"
-                    (keydown.enter)="filter = 'all'"
+                    [class.active]="stateFilter() === TodoStateEnum.All"
+                    (click)="changeStateFilter(TodoStateEnum.All)"
+                    (keydown.enter)="changeStateFilter(TodoStateEnum.All)"
                     tabindex="0"
                 >
                     All
                 </div>
                 <div
                     class="link"
-                    [class.active]="filter === 'active'"
-                    (click)="filter = 'active'"
-                    (keydown.enter)="filter = 'active'"
+                    [class.active]="stateFilter() === TodoStateEnum.Active"
+                    (click)="changeStateFilter(TodoStateEnum.Active)"
+                    (keydown.enter)="changeStateFilter(TodoStateEnum.Active)"
                     tabindex="0"
                 >
                     Active
                 </div>
                 <div
                     class="link"
-                    [class.active]="filter === 'completed'"
-                    (click)="filter = 'completed'"
-                    (keydown.enter)="filter = 'completed'"
+                    [class.active]="stateFilter() === TodoStateEnum.Completed"
+                    (click)="changeStateFilter(TodoStateEnum.Completed)"
+                    (keydown.enter)="changeStateFilter(TodoStateEnum.Completed)"
                     tabindex="0"
                 >
                     Completed

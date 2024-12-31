@@ -1,5 +1,6 @@
+import { SidebarService } from '../../services/sidebar.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -27,12 +28,19 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
             transition('* => void', [animate(200, style({ backgroundColor: 'rgba(0,0,0,0)' }))]),
         ]),
     ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [RouterLink, RouterLinkActive],
 })
 export class SidebarComponent {
-    isOpen = false;
+    private sidebarService = inject(SidebarService);
+
+    isOpen: Signal<boolean>;
+
+    constructor() {
+        this.isOpen = this.sidebarService.isOpen;
+    }
 
     toggleSidebar(): void {
-        this.isOpen = !this.isOpen;
+        this.sidebarService.toggle();
     }
 }

@@ -5,7 +5,7 @@ import { EscolhaEnum } from '../enums/escolha.enum';
 import { ResultadoEnum } from '../enums/resultado.enum';
 import { TelaEnum } from '../enums/tela.enum';
 
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { timer } from 'rxjs';
 import { take } from 'rxjs/operators';
 
@@ -13,23 +13,24 @@ import { take } from 'rxjs/operators';
     selector: 'app-game',
     templateUrl: './game.component.html',
     styleUrls: ['./game.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [GameHeaderComponent, GameEscolhasComponent, GameJogadaComponent],
 })
 export class GameComponent {
-    telaAtual: TelaEnum = TelaEnum.Escolha;
-    resultado: ResultadoEnum | null = null;
+    telaAtual = signal<TelaEnum>(TelaEnum.Escolha);
+    resultado = signal<ResultadoEnum | null>(null);
 
-    escolhaJogador: EscolhaEnum | null = null;
-    escolhaComputador: EscolhaEnum | null = null;
+    escolhaJogador = signal<EscolhaEnum | null>(null);
+    escolhaComputador = signal<EscolhaEnum | null>(null);
 
-    score = 0;
+    score = signal<number>(0);
 
     readonly TelaEnum = TelaEnum;
 
     escolher(escolha: EscolhaEnum): void {
-        this.telaAtual = TelaEnum.Jogada;
-        this.escolhaJogador = escolha;
-        this.escolhaComputador = this.gerarEscolhaDoComputador();
+        this.telaAtual.set(TelaEnum.Jogada);
+        this.escolhaJogador.set(escolha);
+        this.escolhaComputador.set(this.gerarEscolhaDoComputador());
 
         timer(500)
             .pipe(take(1))
@@ -37,41 +38,43 @@ export class GameComponent {
     }
 
     handleJogada(): void {
-        this.resultado = this.checarSeGanhou();
+        const resultado = this.checarSeGanhou();
+        this.resultado.set(resultado);
 
-        if (this.resultado === ResultadoEnum.Jogador) {
-            this.score = this.score + 1;
-
+        if (resultado === ResultadoEnum.Jogador) {
+            this.score.set(this.score() + 1);
             return;
         }
 
-        if (this.resultado === ResultadoEnum.Computador) {
-            this.score = Math.max(this.score - 1, 0);
+        if (resultado === ResultadoEnum.Computador) {
+            this.score.set(Math.max(this.score() - 1, 0));
         }
     }
 
     resetar(): void {
-        this.telaAtual = TelaEnum.Escolha;
-        this.escolhaJogador = null;
-        this.resultado = null;
+        this.telaAtual.set(TelaEnum.Escolha);
+        this.escolhaJogador.set(null);
+        this.resultado.set(null);
     }
 
     private gerarEscolhaDoComputador(): EscolhaEnum {
         const escolhasPossíveis: EscolhaEnum[] = Object.values(EscolhaEnum);
-
         // eslint-disable-next-line sonarjs/pseudo-random
         return escolhasPossíveis[Math.floor(Math.random() * escolhasPossíveis.length)];
     }
 
     checarSeGanhou(): ResultadoEnum {
-        if (this.escolhaJogador === this.escolhaComputador) {
+        const escolhaJogador = this.escolhaJogador();
+        const escolhaComputador = this.escolhaComputador();
+
+        if (escolhaJogador === escolhaComputador) {
             return ResultadoEnum.Empate;
         }
 
         if (
-            (this.escolhaJogador === EscolhaEnum.Pedra && this.escolhaComputador === EscolhaEnum.Tesoura) ||
-            (this.escolhaJogador === EscolhaEnum.Papel && this.escolhaComputador === EscolhaEnum.Pedra) ||
-            (this.escolhaJogador === EscolhaEnum.Tesoura && this.escolhaComputador === EscolhaEnum.Papel)
+            (escolhaJogador === EscolhaEnum.Pedra && escolhaComputador === EscolhaEnum.Tesoura) ||
+            (escolhaJogador === EscolhaEnum.Papel && escolhaComputador === EscolhaEnum.Pedra) ||
+            (escolhaJogador === EscolhaEnum.Tesoura && escolhaComputador === EscolhaEnum.Papel)
         ) {
             return ResultadoEnum.Jogador;
         }

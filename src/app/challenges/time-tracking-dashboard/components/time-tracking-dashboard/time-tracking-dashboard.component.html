@@ -12,7 +12,7 @@
             <div class="menu">
                 <div
                     class="item"
-                    [ngClass]="{ active: timeframe === 'daily' }"
+                    [ngClass]="{ active: timeframe() === 'daily' }"
                     (click)="setDaily()"
                     (keydown.enter)="setDaily()"
                     tabindex="1"
@@ -21,7 +21,7 @@
                 </div>
                 <div
                     class="item"
-                    [ngClass]="{ active: timeframe === 'weekly' }"
+                    [ngClass]="{ active: timeframe() === 'weekly' }"
                     (click)="setWeekly()"
                     (keydown.enter)="setWeekly()"
                     tabindex="2"
@@ -30,7 +30,7 @@
                 </div>
                 <div
                     class="item"
-                    [ngClass]="{ active: timeframe === 'monthly' }"
+                    [ngClass]="{ active: timeframe() === 'monthly' }"
                     (click)="setMonthly()"
                     (keydown.enter)="setMonthly()"
                     tabindex="3"
@@ -40,7 +40,7 @@
             </div>
         </div>
 
-        @for (data of data$ | async; track data) {
+        @for (data of data(); track data) {
             <div class="card">
                 <div class="bg-icon"></div>
                 <div class="upper">
@@ -52,17 +52,17 @@
                         />
                     </header>
                     <div class="text">
-                        <h3>{{ data.timeframes[timeframe].current }}hrs</h3>
+                        <h3>{{ data.timeframes[timeframe()].current }}hrs</h3>
                         <p>
                             {{
-                                timeframe === 'daily'
+                                timeframe() === 'daily'
                                     ? 'Yesterday'
-                                    : timeframe === 'weekly'
+                                    : timeframe() === 'weekly'
                                       ? 'Last Week'
                                       : 'Last Month'
                             }}
                             -
-                            {{ data.timeframes[timeframe].previous }}hrs
+                            {{ data.timeframes[timeframe()].previous }}hrs
                         </p>
                     </div>
                 </div>

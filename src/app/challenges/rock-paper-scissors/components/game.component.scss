@@ -1,5 +1,11 @@
 @use '../styles/variables.scss' as variables;
 
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700&display=swap');
+
+:host {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+}
+
 #game-container {
     min-width: 100vw;
     min-height: 100vh;

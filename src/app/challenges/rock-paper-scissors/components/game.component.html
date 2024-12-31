@@ -1,15 +1,15 @@
 <div id="game-container">
-    <app-game-header [score]="score"> </app-game-header>
+    <app-game-header [score]="score()"> </app-game-header>
 
-    @if (telaAtual === TelaEnum.Escolha) {
+    @if (telaAtual() === TelaEnum.Escolha) {
         <app-game-escolhas (escolha)="escolher($event)"></app-game-escolhas>
     }
 
-    @if (telaAtual === TelaEnum.Jogada) {
+    @if (telaAtual() === TelaEnum.Jogada) {
         <app-game-jogada
-            [jogador]="escolhaJogador"
-            [computador]="escolhaComputador"
-            [resultado]="resultado"
+            [jogador]="escolhaJogador()"
+            [computador]="escolhaComputador()"
+            [resultado]="resultado()"
             (resetEvent)="resetar()"
         ></app-game-jogada>
     }

@@ -4,15 +4,13 @@
 </div>
 
 <div class="container">
-    <!-- <dp-date-picker #datePicker (onSelect)="setFinishTime($any($event.date)._d); log($event)" mode="daytime" theme="dp-material" [config]="configDate"></dp-date-picker> -->
-
     <h1>We're launching soon</h1>
 
     <div class="items">
         <div class="item">
             <div class="box">
                 <p>
-                    {{ timeLeft.days }}
+                    {{ timeLeft().days }}
                 </p>
             </div>
             <div class="text">DAYS</div>
@@ -20,7 +18,7 @@
         <div class="item">
             <div class="box">
                 <p>
-                    {{ timeLeft.hours }}
+                    {{ timeLeft().hours }}
                 </p>
             </div>
             <div class="text">HOURS</div>
@@ -28,7 +26,7 @@
         <div class="item">
             <div class="box">
                 <p>
-                    {{ timeLeft.minutes }}
+                    {{ timeLeft().minutes }}
                 </p>
             </div>
             <div class="text">MINUTES</div>
@@ -36,7 +34,7 @@
         <div class="item">
             <div class="box">
                 <p>
-                    {{ timeLeft.seconds }}
+                    {{ timeLeft().seconds }}
                 </p>
             </div>
             <div class="text">SECONDS</div>
@@ -52,6 +50,6 @@
     <div class="attribution">
         Challenge by
         <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. Coded by
-        <a href="#">Your Name Here</a>.
+        <a href="#">Bruno Schmidt</a>.
     </div>
 </div>

@@ -2,7 +2,7 @@ import { GameEscolhaCircleComponent } from '../game-escolha-circle/game-escolha-
 import { EscolhaEnum } from '../../enums/escolha.enum';
 import { ResultadoEnum } from '../../enums/resultado.enum';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 
 @Component({
     selector: 'app-game-jogada',
@@ -16,6 +16,7 @@ import { Component, input, output } from '@angular/core';
             ]),
         ]),
     ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [GameEscolhaCircleComponent],
 })
 export class GameJogadaComponent {
@@ -24,13 +25,7 @@ export class GameJogadaComponent {
     readonly resultado = input<ResultadoEnum | null>(null);
     readonly resetEvent = output<void>();
 
-    readonly ResultadoEnum = ResultadoEnum;
-
-    resetar(): void {
-        this.resetEvent.emit();
-    }
-
-    getResultText(): string | void {
+    textoResultado = computed(() => {
         const resultadoValue = this.resultado();
 
         if (!resultadoValue) {
@@ -44,5 +39,11 @@ export class GameJogadaComponent {
         };
 
         return resultado[resultadoValue];
+    });
+
+    readonly ResultadoEnum = ResultadoEnum;
+
+    resetar(): void {
+        this.resetEvent.emit();
     }
 }

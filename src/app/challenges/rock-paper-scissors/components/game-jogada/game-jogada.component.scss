@@ -3,6 +3,7 @@
 .jogada {
     margin-top: 35px;
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 60px;
 }

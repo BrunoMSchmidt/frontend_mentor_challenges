@@ -1,88 +1,82 @@
-import { Component, OnDestroy, inject } from '@angular/core';
-import {
-    UntypedFormBuilder,
-    UntypedFormControl,
-    UntypedFormGroup,
-    Validators,
-    ReactiveFormsModule,
-} from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { ChangeDetectionStrategy, Component, computed, ElementRef, signal, viewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { NgClass, PercentPipe } from '@angular/common';
 
 @Component({
     selector: 'app-tip-calculator',
     templateUrl: './tip-calculator.component.html',
     styleUrls: ['./tip-calculator.component.scss'],
-    imports: [ReactiveFormsModule, NgClass, PercentPipe],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [FormsModule, NgClass, PercentPipe],
 })
-export class TipCalculatorComponent implements OnDestroy {
-    private fb = inject(UntypedFormBuilder);
+export class TipCalculatorComponent {
+    private readonly tipCustomInput = viewChild<ElementRef<HTMLInputElement>>('tipCustomInput');
 
     percentages: number[] = [5, 10, 15, 25, 50];
 
-    result = {
-        tipPerPerson: 0,
-        totalPerPerson: 0,
-    };
+    bill = signal<number | null>(null);
+    tipPercent = signal<number>(0);
+    people = signal<number | null>(null);
 
-    form: UntypedFormGroup;
+    billError = computed(() => this.getErrorMessage(this.bill()));
+    tipPercentError = computed(() => this.getErrorMessage(this.tipPercent(), true));
+    peopleError = computed(() => this.getErrorMessage(this.people()));
 
-    get bill(): UntypedFormControl {
-        return this.form.get('bill') as UntypedFormControl;
-    }
+    result = computed(() => {
+        const bill = this.bill();
+        const tipPercent = this.tipPercent();
+        const people = this.people();
 
-    get tipPercent(): UntypedFormControl {
-        return this.form.get('tipPercent') as UntypedFormControl;
-    }
+        if (bill === null || tipPercent === null || people === null) {
+            return {
+                tipPerPerson: 0,
+                totalPerPerson: 0,
+            };
+        }
 
-    get people(): UntypedFormControl {
-        return this.form.get('people') as UntypedFormControl;
-    }
+        const tipAmount = (bill * tipPercent) / 100;
+        const tipPerPerson = tipAmount / people;
+        const totalPerPerson = (bill + tipAmount) / people;
 
-    subscriptions: Subscription[] = [];
+        return {
+            tipPerPerson: tipPerPerson,
+            totalPerPerson: totalPerPerson,
+        };
+    });
 
-    constructor() {
-        this.form = this.fb.group({
-            bill: [null, [Validators.required, Validators.min(1)]],
-            tipPercent: [null, [Validators.min(0)]],
-            people: [null, [Validators.required, Validators.min(1), Validators.pattern('^\\d+$')]],
-        });
+    updatePercentageAndResetInput(percentage: number): void {
+        this.updatePercentage(percentage);
 
-        this.subscriptions.push(
-            this.form.valueChanges.subscribe(values => {
-                this.calculate(values);
-            }),
-        );
-    }
+        const tipCustomInputElement = this.tipCustomInput();
 
-    ngOnDestroy(): void {
-        this.subscriptions.forEach(subscription => subscription.unsubscribe());
-    }
-
-    isFieldInvalid(field: UntypedFormControl): boolean {
-        return field.invalid && (field.touched || field.dirty);
-    }
-
-    calculate(values: { bill: number; tipPercent: number; people: number }): void {
-        const bill = values.bill;
-        const tipPercent = values.tipPercent;
-        const people = values.people;
-
-        if (bill * people != 0 && this.form.valid) {
-            this.result.tipPerPerson = (bill * tipPercent) / 100 / people;
-            this.result.totalPerPerson = bill / people + this.result.tipPerPerson;
-        } else {
-            this.resetResult();
+        if (tipCustomInputElement) {
+            tipCustomInputElement.nativeElement.value = '';
         }
     }
 
-    resetForm(): void {
-        this.form.reset();
-        this.resetResult();
+    updatePercentage(percentage: number): void {
+        this.tipPercent.set(percentage);
     }
 
-    resetResult(): void {
-        this.result.totalPerPerson = 0;
-        this.result.tipPerPerson = 0;
+    resetForm(): void {
+        this.bill.set(0);
+        this.tipPercent.set(0);
+        this.people.set(0);
+    }
+
+    private getErrorMessage(value: number | null, allowZero = false): string | null {
+        if (value === null) {
+            return null;
+        }
+
+        if (value === 0 && !allowZero) {
+            return "Can't be zero";
+        }
+
+        if (value < 0) {
+            return "Can't be negative";
+        }
+
+        return null;
     }
 }

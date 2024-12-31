@@ -4,14 +4,14 @@
 
         <app-game-escolha-circle
             [size]="200"
-            [escolha]="jogador"
+            [escolha]="jogador()"
             [clickable]="false"
-            [highlight]="resultado === ResultadoEnum.Jogador"
+            [highlight]="resultado() === ResultadoEnum.Jogador"
         >
         </app-game-escolha-circle>
     </div>
 
-    @if (resultado !== null) {
+    @if (resultado() !== null) {
         <div class="result" @grow>
             <div class="text">{{ getResultText() }}</div>
             <button (click)="resetar()">PLAY AGAIN</button>
@@ -23,9 +23,9 @@
 
         <app-game-escolha-circle
             [size]="200"
-            [escolha]="computador"
+            [escolha]="computador()"
             [clickable]="false"
-            [highlight]="resultado === ResultadoEnum.Computador"
+            [highlight]="resultado() === ResultadoEnum.Computador"
         >
         </app-game-escolha-circle>
     </div>

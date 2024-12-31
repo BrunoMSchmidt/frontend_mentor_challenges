@@ -2,7 +2,7 @@ import { GameEscolhaCircleComponent } from '../game-escolha-circle/game-escolha-
 import { EscolhaEnum } from '../../enums/escolha.enum';
 import { ResultadoEnum } from '../../enums/resultado.enum';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Output, input } from '@angular/core';
 
 @Component({
     selector: 'app-game-jogada',
@@ -19,9 +19,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
     imports: [GameEscolhaCircleComponent],
 })
 export class GameJogadaComponent {
-    @Input() jogador: EscolhaEnum | null = null;
-    @Input() computador: EscolhaEnum | null = null;
-    @Input() resultado: ResultadoEnum | null = null;
+    readonly jogador = input<EscolhaEnum | null>(null);
+    readonly computador = input<EscolhaEnum | null>(null);
+    readonly resultado = input<ResultadoEnum | null>(null);
     @Output() resetEvent = new EventEmitter<void>();
 
     readonly ResultadoEnum = ResultadoEnum;
@@ -31,7 +31,9 @@ export class GameJogadaComponent {
     }
 
     getResultText(): string | void {
-        if (!this.resultado) {
+        const resultadoValue = this.resultado();
+
+        if (!resultadoValue) {
             return;
         }
 
@@ -41,6 +43,6 @@ export class GameJogadaComponent {
             [ResultadoEnum.Empate]: 'TIE GAME',
         };
 
-        return resultado[this.resultado];
+        return resultado[resultadoValue];
     }
 }

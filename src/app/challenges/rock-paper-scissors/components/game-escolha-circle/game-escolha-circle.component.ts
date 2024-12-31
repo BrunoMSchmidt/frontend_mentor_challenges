@@ -1,5 +1,5 @@
 import { EscolhaEnum } from '../../enums/escolha.enum';
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
     selector: 'app-game-escolha-circle',
@@ -7,8 +7,8 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./game-escolha-circle.component.scss'],
 })
 export class GameEscolhaCircleComponent {
-    @Input() escolha: EscolhaEnum | null = null;
-    @Input() clickable = true;
-    @Input() size = 120;
-    @Input() highlight = false;
+    readonly escolha = input<EscolhaEnum | null>(null);
+    readonly clickable = input(true);
+    readonly size = input(120);
+    readonly highlight = input(false);
 }

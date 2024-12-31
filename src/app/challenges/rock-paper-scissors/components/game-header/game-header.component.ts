@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
     selector: 'app-game-header',
@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
     styleUrls: ['./game-header.component.scss'],
 })
 export class GameHeaderComponent {
-    @Input() score!: number;
+    readonly score = input.required<number>();
 }

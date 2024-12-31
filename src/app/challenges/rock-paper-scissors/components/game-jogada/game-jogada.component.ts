@@ -2,7 +2,7 @@ import { GameEscolhaCircleComponent } from '../game-escolha-circle/game-escolha-
 import { EscolhaEnum } from '../../enums/escolha.enum';
 import { ResultadoEnum } from '../../enums/resultado.enum';
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Output, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
     selector: 'app-game-jogada',
@@ -22,7 +22,7 @@ export class GameJogadaComponent {
     readonly jogador = input<EscolhaEnum | null>(null);
     readonly computador = input<EscolhaEnum | null>(null);
     readonly resultado = input<ResultadoEnum | null>(null);
-    @Output() resetEvent = new EventEmitter<void>();
+    readonly resetEvent = output<void>();
 
     readonly ResultadoEnum = ResultadoEnum;
 

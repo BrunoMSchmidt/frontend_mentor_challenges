@@ -1,6 +1,6 @@
 import { GameEscolhaCircleComponent } from '../game-escolha-circle/game-escolha-circle.component';
 import { EscolhaEnum } from '../../enums/escolha.enum';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, output } from '@angular/core';
 
 @Component({
     selector: 'app-game-escolhas',
@@ -10,7 +10,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class GameEscolhasComponent {
     public escolhasPossiveis: EscolhaEnum[] = Object.values(EscolhaEnum);
-    @Output() escolha = new EventEmitter<EscolhaEnum>();
+    readonly escolha = output<EscolhaEnum>();
 
     escolher(escolha: EscolhaEnum): void {
         this.escolha.emit(escolha);

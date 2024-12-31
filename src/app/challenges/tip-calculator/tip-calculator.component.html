@@ -12,42 +12,18 @@
                     <div class="header">
                         <span class="name">Bill</span>
                         <div class="errors">
-                            <span
-                                class="error"
-                                *ngIf="
-                                    isFieldInvalid(bill) &&
-                                    bill.hasError('required')
-                                "
-                            >
+                            <span class="error" *ngIf="isFieldInvalid(bill) && bill.hasError('required')">
                                 Required
                             </span>
-                            <span
-                                class="error"
-                                *ngIf="
-                                    isFieldInvalid(bill) && bill.hasError('min')
-                                "
-                            >
+                            <span class="error" *ngIf="isFieldInvalid(bill) && bill.hasError('min')">
                                 Can't be
-                                {{
-                                    bill.getError('min').actual >= 0
-                                        ? 'zero'
-                                        : 'negative'
-                                }}
+                                {{ bill.getError('min').actual >= 0 ? 'zero' : 'negative' }}
                             </span>
                         </div>
                     </div>
-                    <label
-                        for="bill"
-                        class="input__wrapper"
-                        [ngClass]="{ invalid: isFieldInvalid(bill) }"
-                    >
+                    <label for="bill" class="input__wrapper" [ngClass]="{ invalid: isFieldInvalid(bill) }">
                         <div class="input icon dollar"></div>
-                        <input
-                            formControlName="bill"
-                            id="bill"
-                            type="number"
-                            placeholder="0"
-                        />
+                        <input formControlName="bill" id="bill" type="number" placeholder="0" />
                     </label>
                 </div>
 
@@ -63,12 +39,9 @@
                         <button
                             type="button"
                             *ngFor="let percentage of percentages"
-                            (click)="
-                                tipPercent.setValue(percentage);
-                                tipCustomInput.value = ''
-                            "
+                            (click)="tipPercent.setValue(percentage); tipCustomInput.value = ''"
                             [ngClass]="{
-                                active: percentage == tipPercent.value
+                                active: percentage === tipPercent.value,
                             }"
                         >
                             {{ percentage / 100 | percent }}
@@ -80,9 +53,8 @@
                             placeholder="Custom"
                             formControlName="tipPercent"
                             [ngClass]="{
-                                active:
-                                    +tipCustomInput.value == tipPercent.value,
-                                invalid: isFieldInvalid(tipPercent)
+                                active: +tipCustomInput.value === tipPercent.value,
+                                invalid: isFieldInvalid(tipPercent),
                             }"
                         />
                     </div>
@@ -93,52 +65,21 @@
                     <div class="header">
                         <span class="name">People</span>
                         <div class="errors">
-                            <span
-                                class="error"
-                                *ngIf="
-                                    isFieldInvalid(people) &&
-                                    people.hasError('required')
-                                "
-                            >
+                            <span class="error" *ngIf="isFieldInvalid(people) && people.hasError('required')">
                                 Required
                             </span>
-                            <span
-                                class="error"
-                                *ngIf="
-                                    isFieldInvalid(people) &&
-                                    people.hasError('min')
-                                "
-                            >
+                            <span class="error" *ngIf="isFieldInvalid(people) && people.hasError('min')">
                                 Can't be
-                                {{
-                                    people.getError('min').actual >= 0
-                                        ? 'zero'
-                                        : 'negative'
-                                }}
+                                {{ people.getError('min').actual >= 0 ? 'zero' : 'negative' }}
                             </span>
-                            <span
-                                class="error"
-                                *ngIf="
-                                    isFieldInvalid(people) &&
-                                    people.hasError('pattern')
-                                "
-                            >
+                            <span class="error" *ngIf="isFieldInvalid(people) && people.hasError('pattern')">
                                 Only integers
                             </span>
                         </div>
                     </div>
-                    <label
-                        for="people"
-                        class="input__wrapper"
-                        [ngClass]="{ invalid: isFieldInvalid(people) }"
-                    >
+                    <label for="people" class="input__wrapper" [ngClass]="{ invalid: isFieldInvalid(people) }">
                         <div class="input icon person"></div>
-                        <input
-                            formControlName="people"
-                            id="people"
-                            type="number"
-                            placeholder="0"
-                        />
+                        <input formControlName="people" id="people" type="number" placeholder="0" />
                     </label>
                 </div>
             </form>
@@ -171,8 +112,7 @@
 
     <div class="attribution">
         Challenge by
-        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
-            >Frontend Mentor</a
-        >. Coded by <a href="#">Your Name Here</a>.
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. Coded by
+        <a href="#">Your Name Here</a>.
     </div>
 </div>

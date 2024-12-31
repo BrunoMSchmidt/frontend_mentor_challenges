@@ -1,7 +1,7 @@
 <div class="custom-menu" [@slideFromLeft]="isOpen ? 'visible' : 'hidden'">
     <div class="menu-header">
         <h1>Challenges</h1>
-        <div class="menu-icon" (click)="toggleSidebar()">
+        <div class="menu-icon" (click)="toggleSidebar()" (keyup.enter)="toggleSidebar()" tabindex="0">
             <div></div>
             <div></div>
             <div></div>
@@ -36,11 +36,7 @@
             (click)="toggleSidebar()"
             >Time Tracking Dashboard</a
         >
-        <a
-            class="item"
-            [routerLink]="['challenges', 'todo']"
-            [routerLinkActive]="'active'"
-            (click)="toggleSidebar()"
+        <a class="item" [routerLink]="['challenges', 'todo']" [routerLinkActive]="'active'" (click)="toggleSidebar()"
             >Todo List</a
         >
         <a
@@ -65,4 +61,6 @@
     *ngIf="isOpen"
     @overlayAppear
     (click)="toggleSidebar()"
+    (keyup.enter)="toggleSidebar()"
+    tabindex="0"
 ></div>

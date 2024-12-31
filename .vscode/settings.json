@@ -1,3 +1,7 @@
 {
-    "editor.detectIndentation": false
+    "eslint.useFlatConfig": true,
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "always"
+    }
 }

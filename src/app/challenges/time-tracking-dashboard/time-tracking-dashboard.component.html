@@ -2,10 +2,7 @@
     <div id="page">
         <div class="card main">
             <div class="upper">
-                <img
-                    src="/assets/challenges/time-tracking-dashboard/images/image-jeremy.png"
-                    alt=""
-                />
+                <img src="/assets/challenges/time-tracking-dashboard/images/image-jeremy.png" alt="" />
                 <div class="text">
                     <p>Report for</p>
                     <h1>Jeremy Robson</h1>
@@ -17,6 +14,8 @@
                     class="item"
                     [ngClass]="{ active: timeframe === 'daily' }"
                     (click)="setDaily()"
+                    (keydown.enter)="setDaily()"
+                    tabindex="1"
                 >
                     Daily
                 </div>
@@ -24,6 +23,8 @@
                     class="item"
                     [ngClass]="{ active: timeframe === 'weekly' }"
                     (click)="setWeekly()"
+                    (keydown.enter)="setWeekly()"
+                    tabindex="2"
                 >
                     Weekly
                 </div>
@@ -31,6 +32,8 @@
                     class="item"
                     [ngClass]="{ active: timeframe === 'monthly' }"
                     (click)="setMonthly()"
+                    (keydown.enter)="setMonthly()"
+                    tabindex="3"
                 >
                     Monthly
                 </div>
@@ -43,21 +46,13 @@
             <div class="upper">
                 <header>
                     <h2>{{ data.title }}</h2>
-                    <img
-                        src="/assets/challenges/time-tracking-dashboard/images/icon-ellipsis.svg"
-                    />
+                    <img src="/assets/challenges/time-tracking-dashboard/images/icon-ellipsis.svg" alt="Menu icon" />
                 </header>
 
                 <div class="text">
                     <h3>{{ data.timeframes[timeframe].current }}hrs</h3>
                     <p>
-                        {{
-                            timeframe === 'daily'
-                                ? 'Yesterday'
-                                : timeframe === 'weekly'
-                                ? 'Last Week'
-                                : 'Last Month'
-                        }}
+                        {{ timeframe === 'daily' ? 'Yesterday' : timeframe === 'weekly' ? 'Last Week' : 'Last Month' }}
                         -
                         {{ data.timeframes[timeframe].previous }}hrs
                     </p>

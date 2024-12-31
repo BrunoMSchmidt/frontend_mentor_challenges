@@ -1,5 +1,7 @@
-import { animate, state, style, transition, trigger } from '@angular/animations'
-import { Component, OnInit } from '@angular/core'
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-sidebar',
@@ -7,34 +9,31 @@ import { Component, OnInit } from '@angular/core'
     styleUrls: ['./sidebar.component.scss'],
     animations: [
         trigger('slideFromLeft', [
-            state('hidden', style({
-                transform: 'translateX(-320px)',
-            })),
-            state('visible', style({
-                transform: 'translateX(0px)',
-            })),
+            state(
+                'hidden',
+                style({
+                    transform: 'translateX(-320px)',
+                }),
+            ),
+            state(
+                'visible',
+                style({
+                    transform: 'translateX(0px)',
+                }),
+            ),
             transition('hidden <=> visible', [animate('0.2s')]),
         ]),
         trigger('overlayAppear', [
-            transition('void => *', [
-                style({ backgroundColor: 'rgba(0,0,0,0)' }),
-                animate(200),
-            ]),
-            transition('* => void', [
-                animate(200, style({ backgroundColor: 'rgba(0,0,0,0)' })),
-            ]),
+            transition('void => *', [style({ backgroundColor: 'rgba(0,0,0,0)' }), animate(200)]),
+            transition('* => void', [animate(200, style({ backgroundColor: 'rgba(0,0,0,0)' }))]),
         ]),
     ],
-    standalone: false
+    imports: [RouterLink, RouterLinkActive, NgIf],
 })
-export class SidebarComponent implements OnInit {
-    isOpen = false
+export class SidebarComponent {
+    isOpen = false;
 
-    constructor() {}
-
-    ngOnInit(): void {}
-
-    toggleSidebar() {
-        this.isOpen = !this.isOpen
+    toggleSidebar(): void {
+        this.isOpen = !this.isOpen;
     }
 }

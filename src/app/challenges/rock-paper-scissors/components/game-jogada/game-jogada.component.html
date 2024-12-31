@@ -6,12 +6,12 @@
             [size]="200"
             [escolha]="jogador"
             [clickable]="false"
-            [highlight]="resultado == 1"
+            [highlight]="resultado === ResultadoEnum.Jogador"
         >
         </app-game-escolha-circle>
     </div>
 
-    <div class="result" *ngIf="resultado != null" @grow>
+    <div class="result" *ngIf="resultado !== null" @grow>
         <div class="text">{{ getResultText() }}</div>
 
         <button (click)="resetar()">PLAY AGAIN</button>
@@ -24,7 +24,7 @@
             [size]="200"
             [escolha]="computador"
             [clickable]="false"
-            [highlight]="resultado == -1"
+            [highlight]="resultado === ResultadoEnum.Computador"
         >
         </app-game-escolha-circle>
     </div>

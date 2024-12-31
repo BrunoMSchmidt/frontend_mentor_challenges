@@ -11,25 +11,23 @@
                     : '/assets/challenges/todo-app/images/icon-moon.svg'
             "
             (click)="switchTheme()"
+            (keydown.enter)="switchTheme()"
+            tabindex="0"
+            alt="Theme switch icon"
         />
     </header>
 
     <main>
-        <form
-            class="item-container form"
-            [formGroup]="form"
-            (ngSubmit)="onSubmit()"
-        >
+        <form class="item-container form" [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="check"></div>
-            <input
-                type="text"
-                formControlName="todo"
-                placeholder="Create a new todo..."
-            />
+            <input type="text" formControlName="todo" placeholder="Create a new todo..." />
             <img
                 src="/assets/challenges/todo-app/images/icon-check.svg"
                 *ngIf="fc.todo.valid"
                 (click)="onSubmit()"
+                (keydown.enter)="onSubmit()"
+                tabindex="0"
+                alt="Submit new todo"
             />
         </form>
 
@@ -39,24 +37,27 @@
                 [ngClass]="{ completed: todo.state === 'completed' }"
                 *ngFor="let todo of filteredTodos"
                 (click)="changeTodoState(todo)"
+                (keydown.enter)="changeTodoState(todo)"
+                tabindex="0"
             >
                 <div class="check">
                     <div class="check-icon"></div>
                 </div>
                 <p>{{ todo.description }}</p>
-                <div class="delete" (click)="removeTodo(todo.id)"></div>
+                <div
+                    class="delete"
+                    (click)="removeTodo(todo.id)"
+                    (keydown.enter)="removeTodo(todo.id)"
+                    tabindex="0"
+                ></div>
             </div>
 
             <footer class="item-container todo">
                 <p>
-                    {{
-                        itemsLeft > 0
-                            ? itemsLeft + ' item' + (itemsLeft > 1 ? 's' : '')
-                            : 'No items'
-                    }}
+                    {{ itemsLeft > 0 ? itemsLeft + ' item' + (itemsLeft > 1 ? 's' : '') : 'No items' }}
                     left
                 </p>
-                <p (click)="clearCompleted()">Clear Completed</p>
+                <p (click)="clearCompleted()" (keydown.enter)="clearCompleted()" tabindex="0">Clear Completed</p>
             </footer>
         </div>
 
@@ -70,11 +71,7 @@
 
         <div class="item-container menu">
             <p>
-                {{
-                    itemsLeft > 0
-                        ? itemsLeft + ' item' + (itemsLeft > 1 ? 's' : '')
-                        : 'No items'
-                }}
+                {{ itemsLeft > 0 ? itemsLeft + ' item' + (itemsLeft > 1 ? 's' : '') : 'No items' }}
                 left
             </p>
             <div class="menu-wrapper">
@@ -82,6 +79,8 @@
                     class="link"
                     [class.active]="filter === 'all'"
                     (click)="filter = 'all'"
+                    (keydown.enter)="filter = 'all'"
+                    tabindex="0"
                 >
                     All
                 </div>
@@ -89,6 +88,8 @@
                     class="link"
                     [class.active]="filter === 'active'"
                     (click)="filter = 'active'"
+                    (keydown.enter)="filter = 'active'"
+                    tabindex="0"
                 >
                     Active
                 </div>
@@ -96,11 +97,13 @@
                     class="link"
                     [class.active]="filter === 'completed'"
                     (click)="filter = 'completed'"
+                    (keydown.enter)="filter = 'completed'"
+                    tabindex="0"
                 >
                     Completed
                 </div>
             </div>
-            <p (click)="clearCompleted()">Clear Completed</p>
+            <p (click)="clearCompleted()" (keydown.enter)="clearCompleted()" tabindex="0">Clear Completed</p>
         </div>
     </main>
 

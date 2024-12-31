@@ -1,4 +1,4 @@
-@import '../styles/variables.scss';
+@use '../../styles/variables.scss' as variables;
 
 #game-header {
     width: 550px;
@@ -19,7 +19,7 @@
         align-items: center;
         border-radius: 12px;
         background-color: #f7f7fa;
-        color: $score_text;
+        color: variables.$score_text;
 
         .text {
             font-size: 18px;
@@ -29,7 +29,7 @@
         .number {
             font-size: 54px;
             font-weight: bold;
-            color: $dark_text;
+            color: variables.$dark_text;
         }
     }
 }

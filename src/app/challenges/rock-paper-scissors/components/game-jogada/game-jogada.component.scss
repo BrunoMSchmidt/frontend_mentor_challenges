@@ -1,4 +1,4 @@
-@import '../styles/variables.scss';
+@use '../../styles/variables.scss' as variables;
 
 .jogada {
     margin-top: 35px;
@@ -33,7 +33,7 @@
 
     button {
         background-color: white;
-        color: $dark_text;
+        color: variables.$dark_text;
         padding: 10px 30px;
         font-size: 18px;
         border: none;

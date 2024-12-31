@@ -1,4 +1,4 @@
-@import '../styles/variables.scss';
+@use '../../styles/variables.scss' as variables;
 
 .escolha-wrapper {
     border-radius: 50%;
@@ -18,7 +18,7 @@
     .escolha {
         width: 80%;
         height: 80%;
-        background-color: $dark_text;
+        background-color: variables.$dark_text;
         border-radius: 50%;
         background-repeat: no-repeat;
         background-position: center;
@@ -33,7 +33,7 @@
     }
 
     &.pedra {
-        background: $rock_gradient;
+        background: variables.$rock_gradient;
 
         .escolha {
             background-color: #f7f7fa;
@@ -42,7 +42,7 @@
     }
 
     &.papel {
-        background: $paper_gradient;
+        background: variables.$paper_gradient;
 
         .escolha {
             background-color: #f7f7fa;
@@ -51,7 +51,7 @@
     }
 
     &.tesoura {
-        background: $scissors_gradient;
+        background: variables.$scissors_gradient;
 
         .escolha {
             background-color: #f7f7fa;

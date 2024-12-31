@@ -1,7 +1,7 @@
 <app-sidebar #sidebar></app-sidebar>
 
 <main>
-    <div class="menu-icon" (click)="sidebar.toggleSidebar()">
+    <div class="menu-icon" (click)="sidebar.toggleSidebar()" (keydown.enter)="sidebar.toggleSidebar()" tabindex="0">
         <div></div>
         <div></div>
         <div></div>

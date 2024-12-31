@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import {
     UntypedFormBuilder,
     UntypedFormControl,
@@ -16,6 +16,8 @@ import { NgClass, PercentPipe } from '@angular/common';
     imports: [ReactiveFormsModule, NgClass, PercentPipe],
 })
 export class TipCalculatorComponent implements OnDestroy {
+    private fb = inject(UntypedFormBuilder);
+
     percentages: number[] = [5, 10, 15, 25, 50];
 
     result = {
@@ -39,7 +41,7 @@ export class TipCalculatorComponent implements OnDestroy {
 
     subscriptions: Subscription[] = [];
 
-    constructor(private fb: UntypedFormBuilder) {
+    constructor() {
         this.form = this.fb.group({
             bill: [null, [Validators.required, Validators.min(1)]],
             tipPercent: [null, [Validators.min(0)]],

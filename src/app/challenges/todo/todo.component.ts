@@ -1,5 +1,5 @@
 import { Todo } from './todo';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 
@@ -10,6 +10,8 @@ import { NgClass } from '@angular/common';
     imports: [ReactiveFormsModule, NgClass],
 })
 export class TodoComponent implements OnInit {
+    private fb = inject(UntypedFormBuilder);
+
     darkTheme = false;
 
     form: UntypedFormGroup;
@@ -33,8 +35,8 @@ export class TodoComponent implements OnInit {
         return this.form.controls;
     }
 
-    constructor(private fb: UntypedFormBuilder) {
-        this.form = fb.group({
+    constructor() {
+        this.form = this.fb.group({
             todo: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(250)]],
         });
 

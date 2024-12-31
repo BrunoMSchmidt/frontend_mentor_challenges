@@ -1,7 +1,7 @@
 /* eslint-disable sonarjs/todo-tag */
 // TODO REVER
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NgClass, AsyncPipe } from '@angular/common';
 
@@ -18,13 +18,15 @@ enum Timeframes {
     imports: [NgClass, AsyncPipe],
 })
 export class TimeTrackingDashboardComponent {
+    private http = inject(HttpClient);
+
     timeframe: Timeframes = Timeframes.DAILY;
 
     // TODO REVER
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     data$: Observable<any>;
 
-    constructor(private http: HttpClient) {
+    constructor() {
         this.data$ = this.http.get('/assets/challenges/time-tracking-dashboard/data.json');
     }
 

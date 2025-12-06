@@ -3,7 +3,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { ChangeDetectionStrategy, Component, inject, Signal, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
     selector: 'app-sidebar',
@@ -31,7 +31,7 @@ import { CommonModule } from '@angular/common';
         ]),
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink, RouterLinkActive, CommonModule],
+    imports: [RouterLink, RouterLinkActive],
     standalone: true
 })
 export class SidebarComponent {

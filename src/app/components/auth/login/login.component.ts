@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
@@ -7,59 +7,71 @@ import { AuthService } from '../../../services/auth.service';
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule],
+    imports: [ReactiveFormsModule],
     template: `
         <div class="auth-container">
-            <div class="auth-card">
-                <h2>Entrar</h2>
-                <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input
-                            type="email"
-                            id="email"
-                            formControlName="email"
-                            placeholder="Seu e-mail"
-                            [class.error]="isFieldInvalid('email')"
-                        >
-                        <div class="error-message" *ngIf="isFieldInvalid('email')">
-                            <span *ngIf="loginForm.get('email')?.errors?.['required']">E-mail é obrigatório</span>
-                            <span *ngIf="loginForm.get('email')?.errors?.['email']">E-mail inválido</span>
-                        </div>
+          <div class="auth-card">
+            <h2>Entrar</h2>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+              <div class="form-group">
+                <label for="email">E-mail</label>
+                <input
+                  type="email"
+                  id="email"
+                  formControlName="email"
+                  placeholder="Seu e-mail"
+                  [class.error]="isFieldInvalid('email')"
+                  >
+                  @if (isFieldInvalid('email')) {
+                    <div class="error-message">
+                      @if (loginForm.get('email')?.errors?.['required']) {
+                        <span>E-mail é obrigatório</span>
+                      }
+                      @if (loginForm.get('email')?.errors?.['email']) {
+                        <span>E-mail inválido</span>
+                      }
                     </div>
-
-                    <div class="form-group">
-                        <label for="password">Senha</label>
-                        <input
-                            type="password"
-                            id="password"
-                            formControlName="password"
-                            placeholder="Sua senha"
-                            [class.error]="isFieldInvalid('password')"
-                        >
-                        <div class="error-message" *ngIf="isFieldInvalid('password')">
-                            <span *ngIf="loginForm.get('password')?.errors?.['required']">Senha é obrigatória</span>
-                            <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Senha deve ter no mínimo 6 caracteres</span>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn-primary" [disabled]="loginForm.invalid || isLoading">
-                        {{ isLoading ? 'Entrando...' : 'Entrar' }}
-                    </button>
-
-                    <button type="button" class="btn-google" (click)="onGoogleLogin()" [disabled]="isLoading">
-                        <img src="assets/google-icon.svg" alt="Google Icon">
-                        Entrar com Google
-                    </button>
-
-                    <p class="auth-links">
-                        Não tem uma conta?
-                        <a routerLink="/register">Registre-se</a>
-                    </p>
+                  }
+                </div>
+        
+                <div class="form-group">
+                  <label for="password">Senha</label>
+                  <input
+                    type="password"
+                    id="password"
+                    formControlName="password"
+                    placeholder="Sua senha"
+                    [class.error]="isFieldInvalid('password')"
+                    >
+                    @if (isFieldInvalid('password')) {
+                      <div class="error-message">
+                        @if (loginForm.get('password')?.errors?.['required']) {
+                          <span>Senha é obrigatória</span>
+                        }
+                        @if (loginForm.get('password')?.errors?.['minlength']) {
+                          <span>Senha deve ter no mínimo 6 caracteres</span>
+                        }
+                      </div>
+                    }
+                  </div>
+        
+                  <button type="submit" class="btn-primary" [disabled]="loginForm.invalid || isLoading">
+                    {{ isLoading ? 'Entrando...' : 'Entrar' }}
+                  </button>
+        
+                  <button type="button" class="btn-google" (click)="onGoogleLogin()" [disabled]="isLoading">
+                    <img src="assets/google-icon.svg" alt="Google Icon">
+                    Entrar com Google
+                  </button>
+        
+                  <p class="auth-links">
+                    Não tem uma conta?
+                    <a routerLink="/register">Registre-se</a>
+                  </p>
                 </form>
+              </div>
             </div>
-        </div>
-    `,
+        `,
     styles: [`
         .auth-container {
             min-height: 100vh;

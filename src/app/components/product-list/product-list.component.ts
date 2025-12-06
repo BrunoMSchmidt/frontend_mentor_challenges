@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
 import { ProductFormComponent } from './product-form/product-form.component';
@@ -8,48 +8,52 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 @Component({
     selector: 'app-product-list',
     standalone: true,
-    imports: [CommonModule, ProductFormComponent, ProductDetailsComponent],
+    imports: [ProductFormComponent, ProductDetailsComponent],
     template: `
         <div class="product-list-container">
-            <button class="add-button" (click)="showForm()">ADD</button>
-
-            <table class="product-table">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Nome Científico</th>
-                        <th>Status de Conservação</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let product of products()">
-                        <td>{{ product.name }}</td>
-                        <td>{{ product.scientificName }}</td>
-                        <td>{{ product.conservationStatus }}</td>
-                        <td class="actions">
-                            <button class="details-button" (click)="openDetails(product)">DETALHES</button>
-                            <button class="edit-button" (click)="onEdit(product)">EDIT</button>
-                            <button class="delete-button" (click)="onDelete(product)">DELETE</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <app-product-form 
-                *ngIf="showModal"
-                [product]="selectedProduct"
-                (save)="onSave($event)"
-                (cancel)="hideForm()">
+          <button class="add-button" (click)="showForm()">ADD</button>
+        
+          <table class="product-table">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Nome Científico</th>
+                <th>Status de Conservação</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (product of products(); track product) {
+                <tr>
+                  <td>{{ product.name }}</td>
+                  <td>{{ product.scientificName }}</td>
+                  <td>{{ product.conservationStatus }}</td>
+                  <td class="actions">
+                    <button class="details-button" (click)="openDetails(product)">DETALHES</button>
+                    <button class="edit-button" (click)="onEdit(product)">EDIT</button>
+                    <button class="delete-button" (click)="onDelete(product)">DELETE</button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        
+          @if (showModal) {
+            <app-product-form
+              [product]="selectedProduct"
+              (save)="onSave($event)"
+              (cancel)="hideForm()">
             </app-product-form>
-
+          }
+        
+          @if (showDetails) {
             <app-product-details
-                *ngIf="showDetails"
-                [product]="selectedProduct!"
-                (close)="hideDetails()">
+              [product]="selectedProduct!"
+              (close)="hideDetails()">
             </app-product-details>
+          }
         </div>
-    `,
+        `,
     styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent {

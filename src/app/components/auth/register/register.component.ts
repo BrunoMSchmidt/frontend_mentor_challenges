@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
@@ -7,74 +7,92 @@ import { AuthService } from '../../../services/auth.service';
 @Component({
     selector: 'app-register',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule],
+    imports: [ReactiveFormsModule],
     template: `
         <div class="auth-container">
-            <div class="auth-card">
-                <h2>Criar Conta</h2>
-                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
-                    <div class="form-group">
-                        <label for="name">Nome</label>
-                        <input
-                            type="text"
-                            id="name"
-                            formControlName="name"
-                            placeholder="Seu nome completo"
-                            [class.error]="isFieldInvalid('name')"
-                        >
-                        <div class="error-message" *ngIf="isFieldInvalid('name')">
-                            <span *ngIf="registerForm.get('name')?.errors?.['required']">Nome é obrigatório</span>
-                            <span *ngIf="registerForm.get('name')?.errors?.['minlength']">Nome deve ter no mínimo 3 caracteres</span>
-                        </div>
+          <div class="auth-card">
+            <h2>Criar Conta</h2>
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+              <div class="form-group">
+                <label for="name">Nome</label>
+                <input
+                  type="text"
+                  id="name"
+                  formControlName="name"
+                  placeholder="Seu nome completo"
+                  [class.error]="isFieldInvalid('name')"
+                  >
+                  @if (isFieldInvalid('name')) {
+                    <div class="error-message">
+                      @if (registerForm.get('name')?.errors?.['required']) {
+                        <span>Nome é obrigatório</span>
+                      }
+                      @if (registerForm.get('name')?.errors?.['minlength']) {
+                        <span>Nome deve ter no mínimo 3 caracteres</span>
+                      }
                     </div>
-
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input
-                            type="email"
-                            id="email"
-                            formControlName="email"
-                            placeholder="Seu e-mail"
-                            [class.error]="isFieldInvalid('email')"
-                        >
-                        <div class="error-message" *ngIf="isFieldInvalid('email')">
-                            <span *ngIf="registerForm.get('email')?.errors?.['required']">E-mail é obrigatório</span>
-                            <span *ngIf="registerForm.get('email')?.errors?.['email']">E-mail inválido</span>
+                  }
+                </div>
+        
+                <div class="form-group">
+                  <label for="email">E-mail</label>
+                  <input
+                    type="email"
+                    id="email"
+                    formControlName="email"
+                    placeholder="Seu e-mail"
+                    [class.error]="isFieldInvalid('email')"
+                    >
+                    @if (isFieldInvalid('email')) {
+                      <div class="error-message">
+                        @if (registerForm.get('email')?.errors?.['required']) {
+                          <span>E-mail é obrigatório</span>
+                        }
+                        @if (registerForm.get('email')?.errors?.['email']) {
+                          <span>E-mail inválido</span>
+                        }
+                      </div>
+                    }
+                  </div>
+        
+                  <div class="form-group">
+                    <label for="password">Senha</label>
+                    <input
+                      type="password"
+                      id="password"
+                      formControlName="password"
+                      placeholder="Sua senha"
+                      [class.error]="isFieldInvalid('password')"
+                      >
+                      @if (isFieldInvalid('password')) {
+                        <div class="error-message">
+                          @if (registerForm.get('password')?.errors?.['required']) {
+                            <span>Senha é obrigatória</span>
+                          }
+                          @if (registerForm.get('password')?.errors?.['minlength']) {
+                            <span>Senha deve ter no mínimo 6 caracteres</span>
+                          }
                         </div>
+                      }
                     </div>
-
-                    <div class="form-group">
-                        <label for="password">Senha</label>
-                        <input
-                            type="password"
-                            id="password"
-                            formControlName="password"
-                            placeholder="Sua senha"
-                            [class.error]="isFieldInvalid('password')"
-                        >
-                        <div class="error-message" *ngIf="isFieldInvalid('password')">
-                            <span *ngIf="registerForm.get('password')?.errors?.['required']">Senha é obrigatória</span>
-                            <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Senha deve ter no mínimo 6 caracteres</span>
-                        </div>
-                    </div>
-
+        
                     <button type="submit" class="btn-primary" [disabled]="registerForm.invalid || isLoading">
-                        {{ isLoading ? 'Registrando...' : 'Registrar' }}
+                      {{ isLoading ? 'Registrando...' : 'Registrar' }}
                     </button>
-
+        
                     <button type="button" class="btn-google" (click)="onGoogleLogin()" [disabled]="isLoading">
-                        <img src="assets/google-icon.svg" alt="Google Icon">
-                        Registrar com Google
+                      <img src="assets/google-icon.svg" alt="Google Icon">
+                      Registrar com Google
                     </button>
-
+        
                     <p class="auth-links">
-                        Já tem uma conta?
-                        <a routerLink="/login">Entrar</a>
+                      Já tem uma conta?
+                      <a routerLink="/login">Entrar</a>
                     </p>
-                </form>
-            </div>
-        </div>
-    `,
+                  </form>
+                </div>
+              </div>
+        `,
     styles: [`
         .auth-container {
             min-height: 100vh;

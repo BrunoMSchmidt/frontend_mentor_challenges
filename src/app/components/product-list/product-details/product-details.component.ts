@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Product } from '../../../models/product.model';
 
 @Component({
     selector: 'app-product-details',
     standalone: true,
-    imports: [CommonModule],
+    imports: [],
     template: `
         <div class="modal-overlay" (click)="onClose()">
             <div class="modal-content" (click)="$event.stopPropagation()">

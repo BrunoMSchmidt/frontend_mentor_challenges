@@ -1,72 +1,86 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../../models/product.model';
 
 @Component({
     selector: 'app-product-form',
     standalone: true,
-    imports: [CommonModule, FormsModule],
+    imports: [FormsModule],
     template: `
         <div class="modal-overlay" (click)="onCancel()">
-            <div class="modal-content" (click)="$event.stopPropagation()">
-                <h2>{{ product ? 'Editar Produto' : 'Novo Produto' }}</h2>
-                
-                <form (ngSubmit)="onSubmit()" #form="ngForm">
-                    <div class="form-group">
-                        <label for="name">Nome</label>
-                        <input 
-                            type="text" 
-                            id="name" 
-                            name="name"
-                            [(ngModel)]="formData.name"
-                            required
-                            minlength="3"
-                            #name="ngModel">
-                        <div class="error" *ngIf="name.invalid && (name.dirty || name.touched)">
-                            <span *ngIf="name.errors?.['required']">Nome é obrigatório</span>
-                            <span *ngIf="name.errors?.['minlength']">Nome deve ter no mínimo 3 caracteres</span>
-                        </div>
+          <div class="modal-content" (click)="$event.stopPropagation()">
+            <h2>{{ product ? 'Editar Produto' : 'Novo Produto' }}</h2>
+        
+            <form (ngSubmit)="onSubmit()" #form="ngForm">
+              <div class="form-group">
+                <label for="name">Nome</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  [(ngModel)]="formData.name"
+                  required
+                  minlength="3"
+                  #name="ngModel">
+                  @if (name.invalid && (name.dirty || name.touched)) {
+                    <div class="error">
+                      @if (name.errors?.['required']) {
+                        <span>Nome é obrigatório</span>
+                      }
+                      @if (name.errors?.['minlength']) {
+                        <span>Nome deve ter no mínimo 3 caracteres</span>
+                      }
                     </div>
-
-                    <div class="form-group">
-                        <label for="scientificName">Nome Científico</label>
-                        <input 
-                            type="text" 
-                            id="scientificName" 
-                            name="scientificName"
-                            [(ngModel)]="formData.scientificName"
-                            required
-                            #scientificName="ngModel">
-                        <div class="error" *ngIf="scientificName.invalid && (scientificName.dirty || scientificName.touched)">
-                            <span *ngIf="scientificName.errors?.['required']">Nome científico é obrigatório</span>
+                  }
+                </div>
+        
+                <div class="form-group">
+                  <label for="scientificName">Nome Científico</label>
+                  <input
+                    type="text"
+                    id="scientificName"
+                    name="scientificName"
+                    [(ngModel)]="formData.scientificName"
+                    required
+                    #scientificName="ngModel">
+                    @if (scientificName.invalid && (scientificName.dirty || scientificName.touched)) {
+                      <div class="error">
+                        @if (scientificName.errors?.['required']) {
+                          <span>Nome científico é obrigatório</span>
+                        }
+                      </div>
+                    }
+                  </div>
+        
+                  <div class="form-group">
+                    <label for="conservationStatus">Status de Conservação</label>
+                    <input
+                      type="text"
+                      id="conservationStatus"
+                      name="conservationStatus"
+                      [(ngModel)]="formData.conservationStatus"
+                      required
+                      #conservationStatus="ngModel">
+                      @if (conservationStatus.invalid && (conservationStatus.dirty || conservationStatus.touched)) {
+                        <div class="error">
+                          @if (conservationStatus.errors?.['required']) {
+                            <span>Status de conservação é obrigatório</span>
+                          }
                         </div>
+                      }
                     </div>
-
-                    <div class="form-group">
-                        <label for="conservationStatus">Status de Conservação</label>
-                        <input 
-                            type="text" 
-                            id="conservationStatus" 
-                            name="conservationStatus"
-                            [(ngModel)]="formData.conservationStatus"
-                            required
-                            #conservationStatus="ngModel">
-                        <div class="error" *ngIf="conservationStatus.invalid && (conservationStatus.dirty || conservationStatus.touched)">
-                            <span *ngIf="conservationStatus.errors?.['required']">Status de conservação é obrigatório</span>
-                        </div>
-                    </div>
-
+        
                     <div class="form-actions">
-                        <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>
-                        <button type="submit" class="btn-submit" [disabled]="form.invalid">
-                            {{ product ? 'Atualizar' : 'Adicionar' }}
-                        </button>
+                      <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>
+                      <button type="submit" class="btn-submit" [disabled]="form.invalid">
+                        {{ product ? 'Atualizar' : 'Adicionar' }}
+                      </button>
                     </div>
-                </form>
-            </div>
-        </div>
-    `,
+                  </form>
+                </div>
+              </div>
+        `,
     styles: [`
         .modal-overlay {
             position: fixed;

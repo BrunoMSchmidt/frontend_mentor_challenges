@@ -1,11 +1,13 @@
 <app-sidebar></app-sidebar>
 
 <main>
+    @if (isAuthenticated()) {
     <div class="menu-icon" (click)="toggleSidebar()" (keydown.enter)="toggleSidebar()" tabindex="0">
         <div></div>
         <div></div>
         <div></div>
     </div>
+    }
 
     <div>
         <router-outlet #outlet="outlet"></router-outlet>

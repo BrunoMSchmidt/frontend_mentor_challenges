@@ -1,11 +1,10 @@
+@if (isAuthenticated()) {
 <div class="custom-menu" [@slideFromLeft]="isOpen() ? 'visible' : 'hidden'">
     <div class="menu-header">
         <h1>Challenges</h1>
-        <div class="menu-icon" (click)="toggleSidebar()" (keyup.enter)="toggleSidebar()" tabindex="0">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+        <button class="close-button" (click)="toggleSidebar()" aria-label="Fechar menu">
+            <img src="./assets/close-icon.svg" alt="Fechar" />
+        </button>
     </div>
     <nav>
         <a
@@ -53,10 +52,41 @@
             (click)="toggleSidebar()"
             >Rock Paper Scissors</a
         >
+        <a
+            class="item"
+            [routerLink]="['challenges', 'product-list']"
+            [routerLinkActive]="'active'"
+            (click)="toggleSidebar()"
+            >Products</a
+        >
     </nav>
-</div>
+    <div class="menu-footer">
+        <button class="logout-button" (click)="showLogoutConfirm.set(true)" [class.loading]="isLoggingOut()">
+            <img src="./assets/logout-icon.svg" alt="Sair" class="logout-icon" />
+            Sair
+        </button>
 
-@if (isOpen()) {
+        @if (showLogoutConfirm()) {
+            <div class="logout-modal">
+                <div class="modal-content">
+                    <h3>Confirmar Saída</h3>
+                    <p>Tem certeza que deseja sair?</p>
+                    <div class="modal-actions">
+                        <button class="cancel-button" (click)="cancelLogout()">
+                            Cancelar
+                        </button>
+                        <button class="confirm-button" (click)="logout()">
+                            Confirmar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+}
+
+@if (isOpen() && isAuthenticated()) {
     <div
         class="sidebar overlay"
         @overlayAppear

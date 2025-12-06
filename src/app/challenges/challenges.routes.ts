@@ -33,4 +33,8 @@ export const challengeRoutes: Routes = [
         path: 'rock-paper-scissors',
         loadComponent: () => import('./rock-paper-scissors/components/game.component').then(m => m.GameComponent),
     },
+    {
+        path: 'product-list',
+        loadComponent: () => import('../components/product-list/product-list.component').then(m => m.ProductListComponent),
+    },
 ];

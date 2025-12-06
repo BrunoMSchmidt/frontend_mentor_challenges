@@ -1,0 +1,25 @@
+<div class="product-list-container">
+    <button class="add-button" (click)="onAdd()">ADD</button>
+
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Scientific name</th>
+                <th>Conservation status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td>{{ product.name }}</td>
+                <td>{{ product.scientificName }}</td>
+                <td>{{ product.conservationStatus }}</td>
+                <td class="actions">
+                    <button class="edit-button" (click)="onEdit(product)">EDIT</button>
+                    <button class="delete-button" (click)="onDelete(product)">DELETE</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

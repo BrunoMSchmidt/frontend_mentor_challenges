@@ -1,7 +1,9 @@
 import { SidebarService } from '../../services/sidebar.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ChangeDetectionStrategy, Component, inject, Signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Signal, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-sidebar',
@@ -29,18 +31,44 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
         ]),
     ],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [RouterLink, RouterLinkActive],
+    imports: [RouterLink, RouterLinkActive, CommonModule],
+    standalone: true
 })
 export class SidebarComponent {
     private sidebarService = inject(SidebarService);
+    private authService = inject(AuthService);
 
     isOpen: Signal<boolean>;
+    isAuthenticated: Signal<boolean>;
+    showLogoutConfirm = signal(false);
+    isLoggingOut = signal(false);
 
     constructor() {
         this.isOpen = this.sidebarService.isOpen;
+        this.isAuthenticated = this.authService.isAuthenticated;
     }
 
     toggleSidebar(): void {
         this.sidebarService.toggle();
+    }
+
+    showLogoutModal(): void {
+        this.showLogoutConfirm.set(true);
+    }
+
+    cancelLogout(): void {
+        this.showLogoutConfirm.set(false);
+    }
+
+    async logout(): Promise<void> {
+        this.showLogoutConfirm.set(false);
+        this.isLoggingOut.set(true);
+        
+        try {
+            await this.authService.logout();
+            this.toggleSidebar();
+        } finally {
+            this.isLoggingOut.set(false);
+        }
     }
 }
